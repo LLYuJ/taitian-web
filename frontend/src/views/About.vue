@@ -34,7 +34,7 @@
           <h2>{{ t('aboutPage.philosophy') }}</h2>
           <div class="philosophy-grid">
             <div class="philosophy-item card" v-for="item in philosophyItems" :key="item.titleKey">
-              <div class="philosophy-icon">{{ item.icon }}</div>
+              <div class="philosophy-icon" v-html="item.icon"></div>
               <h3>{{ t(item.titleKey) }}</h3>
               <p>{{ t(item.descKey) }}</p>
             </div>
@@ -81,11 +81,36 @@ const stats = [
   { value: '120', unitKey: 'aboutPage.stats.patentsUnit', labelKey: 'aboutPage.stats.patents' }
 ]
 
+// 专业 SVG 图标
+const svgIcons = {
+  innovation: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 18h6"/>
+    <path d="M10 22h4"/>
+    <path d="M12 2a7 7 0 0 0-4 12.9V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.1A7 7 0 0 0 12 2z"/>
+    <path d="M12 6v4"/>
+    <path d="M10 8h4"/>
+  </svg>`,
+  quality: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+  </svg>`,
+  service: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+    <circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+  </svg>`,
+  expertise: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <circle cx="12" cy="12" r="6"/>
+    <circle cx="12" cy="12" r="2"/>
+  </svg>`
+}
+
 const philosophyItems = [
-  { icon: '💡', titleKey: 'aboutPage.philosophyItems.innovation', descKey: 'aboutPage.philosophyItems.innovationDesc' },
-  { icon: '⭐', titleKey: 'aboutPage.philosophyItems.quality', descKey: 'aboutPage.philosophyItems.qualityDesc' },
-  { icon: '🤝', titleKey: 'aboutPage.philosophyItems.service', descKey: 'aboutPage.philosophyItems.serviceDesc' },
-  { icon: '🎯', titleKey: 'aboutPage.philosophyItems.expertise', descKey: 'aboutPage.philosophyItems.expertiseDesc' }
+  { icon: svgIcons.innovation, titleKey: 'aboutPage.philosophyItems.innovation', descKey: 'aboutPage.philosophyItems.innovationDesc' },
+  { icon: svgIcons.quality, titleKey: 'aboutPage.philosophyItems.quality', descKey: 'aboutPage.philosophyItems.qualityDesc' },
+  { icon: svgIcons.service, titleKey: 'aboutPage.philosophyItems.service', descKey: 'aboutPage.philosophyItems.serviceDesc' },
+  { icon: svgIcons.expertise, titleKey: 'aboutPage.philosophyItems.expertise', descKey: 'aboutPage.philosophyItems.expertiseDesc' }
 ]
 
 const researchItems = [
@@ -231,11 +256,30 @@ const researchItems = [
     &:hover {
       background: white;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      
+      .philosophy-icon {
+        background: #2CB5BE;
+        color: white;
+        transform: scale(1.05);
+      }
     }
     
     .philosophy-icon {
-      font-size: 40px;
-      margin-bottom: 15px;
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #e8f7f8 0%, #d0f0f3 100%);
+      border-radius: 16px;
+      color: #2CB5BE;
+      transition: all 0.3s ease;
+      
+      :deep(svg) {
+        width: 36px;
+        height: 36px;
+      }
     }
 
     h3 {
