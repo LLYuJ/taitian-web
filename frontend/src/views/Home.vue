@@ -28,9 +28,13 @@
           </p>
         </div>
 
-        <div class="stats">
-          <div class="stat-item" v-for="stat in companyStats" :key="stat.labelKey">
-            <div class="stat-number">{{ stat.value }}</div>
+        <!-- 企业信息统计 -->
+        <div class="stats-showcase" ref="statsRef">
+          <div class="stat-item" v-for="(stat, index) in companyStats" :key="stat.labelKey">
+            <div class="stat-number-wrapper">
+              <span class="stat-number">{{ animatedValues[index] }}</span>
+              <span class="stat-unit">{{ stat.unit }}</span>
+            </div>
             <div class="stat-label">{{ t(stat.labelKey) }}</div>
           </div>
         </div>
@@ -112,7 +116,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted, reactive } from 'vue'
 import { useLocale } from '@/composables/useLocale'
 
 // 引入图片
@@ -132,15 +136,90 @@ const { t, localePath } = useLocale()
 
 const heroBannerUrl = ref(heroBanner)
 
+// 企业统计数据 - 包含数字值和单位分离
 const companyStats = [
-  { value: '2007', labelKey: 'home.stats.foundedIn' },
-  { value: '6088万', labelKey: 'home.stats.registeredCapital' },
-  { value: '900+', labelKey: 'home.stats.employees' },
-  { value: '2000+', labelKey: 'home.stats.cncEquipment' },
-  { value: '120+', labelKey: 'home.stats.patents' },
-  { value: '20万', labelKey: 'home.stats.compressorHosts' },
-  { value: '100万', labelKey: 'home.stats.pneumaticTools' }
+  { numericValue: 2007, unit: '年', labelKey: 'home.stats.foundedIn', static: true }, // 年份不需要动画
+  { numericValue: 6088, unit: '万', labelKey: 'home.stats.registeredCapital' },
+  { numericValue: 900, unit: '+', labelKey: 'home.stats.employees' },
+  { numericValue: 2000, unit: '+', labelKey: 'home.stats.cncEquipment' },
+  { numericValue: 120, unit: '+', labelKey: 'home.stats.patents' },
+  { numericValue: 20, unit: '万', labelKey: 'home.stats.compressorHosts' },
+  { numericValue: 100, unit: '万', labelKey: 'home.stats.pneumaticTools' }
 ]
+
+// 动画相关
+const statsRef = ref(null)
+// 静态数字直接显示最终值，其他初始化为 0
+const animatedValues = reactive(companyStats.map(stat => stat.static ? stat.numericValue : 0))
+let hasAnimated = false
+let observer = null
+
+// 数字递增动画函数
+const animateNumber = (index, targetValue, duration = 2000) => {
+  const startTime = performance.now()
+  const startValue = 0
+  
+  const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4)
+  
+  const updateNumber = (currentTime) => {
+    const elapsed = currentTime - startTime
+    const progress = Math.min(elapsed / duration, 1)
+    const easedProgress = easeOutQuart(progress)
+    
+    animatedValues[index] = Math.floor(startValue + (targetValue - startValue) * easedProgress)
+    
+    if (progress < 1) {
+      requestAnimationFrame(updateNumber)
+    } else {
+      animatedValues[index] = targetValue
+    }
+  }
+  
+  requestAnimationFrame(updateNumber)
+}
+
+// 启动所有数字动画
+const startCountAnimation = () => {
+  if (hasAnimated) return
+  hasAnimated = true
+  
+  companyStats.forEach((stat, index) => {
+    // 跳过静态数字（如年份）
+    if (stat.static) return
+    
+    // 添加延迟让动画有层次感
+    setTimeout(() => {
+      animateNumber(index, stat.numericValue, 2000)
+    }, index * 100)
+  })
+}
+
+// Intersection Observer 回调
+const handleIntersection = (entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      startCountAnimation()
+    }
+  })
+}
+
+onMounted(() => {
+  // 创建 Intersection Observer
+  observer = new IntersectionObserver(handleIntersection, {
+    threshold: 0.3,
+    rootMargin: '0px'
+  })
+  
+  if (statsRef.value) {
+    observer.observe(statsRef.value)
+  }
+})
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+  }
+})
 
 const researchItems = [
   { 
@@ -267,42 +346,146 @@ const onHeroLoad = () => {
     color: #666;
     text-align: center;
   }
+}
 
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 30px;
-    margin-top: 60px;
+// 企业信息统计展示区
+.stats-showcase {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 80px 60px;
+  margin: 60px 0 0;
+  background: linear-gradient(
+    180deg,
+    #f8f9fa 0%,
+    #f2f4f6 50%,
+    #eef0f2 100%
+  );
+  background-image: 
+    linear-gradient(180deg, #f8f9fa 0%, #f2f4f6 50%, #eef0f2 100%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0e3e6' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  
+  // 右下角装饰性背景
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 30%, rgba(0, 0, 0, 0.02) 100%);
+    pointer-events: none;
   }
-
+  
   .stat-item {
+    flex: 1;
     text-align: center;
-    padding: 30px 15px;
-    border-radius: 8px;
-    background: #f8f9fa;
-    transition: all 0.3s;
-
-    &:hover {
-      background: #2CB5BE;
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(44, 181, 190, 0.3);
-
-      .stat-number, .stat-label {
-        color: white;
-      }
+    padding: 20px 10px;
+    position: relative;
+    z-index: 1;
+    
+    // 分隔线效果
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 50%,
+        transparent 100%
+      );
     }
   }
-
-  .stat-number {
-    font-size: 32px;
-    font-weight: 700;
-    color: #2CB5BE;
-    margin-bottom: 10px;
+  
+  .stat-number-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 12px;
+    line-height: 1;
   }
-
+  
+  .stat-number {
+    font-size: 52px;
+    font-weight: 700;
+    color: #1a1a1a;
+    font-family: 'DIN Alternate', 'Oswald', 'Bebas Neue', 'Arial Black', sans-serif;
+    letter-spacing: -2px;
+  }
+  
+  .stat-unit {
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+    margin-left: 4px;
+    margin-top: 6px;
+    font-family: inherit;
+  }
+  
   .stat-label {
-    font-size: 14px;
-    color: #666;
+    font-size: 15px;
+    color: #555;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .stats-showcase {
+    padding: 60px 30px;
+    flex-wrap: wrap;
+    gap: 30px;
+    
+    .stat-item {
+      flex: 0 0 calc(25% - 22.5px);
+      
+      &::after {
+        display: none;
+      }
+    }
+    
+    .stat-number {
+      font-size: 44px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-showcase {
+    padding: 50px 20px;
+    gap: 25px;
+    
+    .stat-item {
+      flex: 0 0 calc(50% - 12.5px);
+    }
+    
+    .stat-number {
+      font-size: 36px;
+    }
+    
+    .stat-unit {
+      font-size: 16px;
+    }
+    
+    .stat-label {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-showcase {
+    .stat-item {
+      flex: 0 0 100%;
+    }
   }
 }
 
@@ -554,10 +737,6 @@ const onHeroLoad = () => {
     .hero-subtitle {
       font-size: 16px;
     }
-  }
-
-  .company-intro .stats {
-    grid-template-columns: repeat(2, 1fr);
   }
   
   .research-section .research-grid,
