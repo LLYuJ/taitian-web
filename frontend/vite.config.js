@@ -11,6 +11,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    allowedHosts: ['med-query-assi.top'],
     proxy: {
       '/api': {
         target: 'http://localhost:8000',
