@@ -100,6 +100,21 @@ export default {
       compressorHosts: 'Annual Compressor Hosts',
       pneumaticTools: 'Annual Pneumatic Tools'
     },
+    divisions: {
+      area: 'Building Area',
+      tighteningTools: {
+        name: 'Fastening Tools Division',
+        desc: 'Annual production of 1 million professional-grade pneumatic tools, 100,000 industrial-grade pneumatic tools, and 50,000 battery sensor torque tools'
+      },
+      compressorHost: {
+        name: 'Compressor Host Division',
+        desc: 'Annual production capacity of 300,000 compressor hosts'
+      },
+      precisionCompressor: {
+        name: 'Precision Machine Tools / Compressor Division',
+        desc: 'Specializing in oil-free scroll, twin-screw water-lubricated, and dry oil-free compressors'
+      }
+    },
     research: {
       intro: 'We have a technical innovation team led by industry experts, with young and middle-aged technical backbone as the main body, with reasonable echelon structure. We always take independent innovation as the foundation, insist on researching cutting-edge projects and cross-industry innovative projects, implement iterative R&D, and build an industry intellectual property highland.',
       concept: 'R&D Philosophy',

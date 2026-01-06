@@ -40,27 +40,6 @@
       </div>
     </section>
 
-    <!-- Research Section -->
-    <section class="research-section">
-      <div class="container">
-        <p class="research-intro">
-          {{ t('home.research.intro') }}
-        </p>
-        
-        <div class="research-grid">
-          <div class="research-card" v-for="item in researchItems" :key="item.titleKey">
-            <div class="research-image">
-              <img :src="item.image" :alt="t(item.titleKey)" loading="lazy" />
-            </div>
-            <div class="research-info">
-              <h3>{{ t(item.titleKey) }}</h3>
-              <p>{{ t(item.descKey) }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Products -->
     <section class="products-section">
       <div class="container">
@@ -79,6 +58,53 @@
         
         <div class="products-action">
           <router-link :to="localePath('/products')" class="industrial-button">{{ t('home.products.viewAll') }}</router-link>
+        </div>
+      </div>
+    </section>
+
+    <!-- 事业部展示 -->
+    <section class="divisions-section">
+      <div class="container">
+        <div class="divisions-showcase">
+          <div 
+            v-for="(division, index) in divisions" 
+            :key="division.nameKey"
+            class="division-item"
+            :class="{ 'reverse': index % 2 === 1 }"
+          >
+            <div class="division-image">
+              <img :src="division.image" :alt="t(division.nameKey)" loading="lazy" />
+            </div>
+            <div class="division-content">
+              <h3 class="division-name">{{ t(division.nameKey) }}</h3>
+              <div class="division-area">
+                <span class="area-icon">📐</span>
+                <span>{{ t('home.divisions.area') }}: {{ division.area }}</span>
+              </div>
+              <p class="division-desc">{{ t(division.descKey) }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="research-section">
+      <div class="container">
+        <p class="research-intro">
+          {{ t('home.research.intro') }}
+        </p>
+        
+        <div class="research-grid">
+          <div class="research-card" v-for="item in researchItems" :key="item.titleKey">
+            <div class="research-image">
+              <img :src="item.image" :alt="t(item.titleKey)" loading="lazy" />
+            </div>
+            <div class="research-info">
+              <h3>{{ t(item.titleKey) }}</h3>
+              <p>{{ t(item.descKey) }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -130,6 +156,10 @@ import autoRepairTools from '@/assets/images/products/auto-repair-tools.png'
 import news1 from '@/assets/images/news/news1.jpg'
 import news2 from '@/assets/images/news/news2.jpg'
 import news3 from '@/assets/images/news/news3.jpg'
+// 事业部图片
+import tighteningToolsDivision from '@/assets/images/facilities/tightening-tools-division.jpg'
+import compressorHostDivision from '@/assets/images/facilities/compressor-host-division.jpg'
+import precisionCompressorDivision from '@/assets/images/facilities/precision-compressor-division.jpg'
 
 const { t, localePath } = useLocale()
 
@@ -219,6 +249,28 @@ onUnmounted(() => {
     observer.disconnect()
   }
 })
+
+// 事业部数据
+const divisions = [
+  {
+    nameKey: 'home.divisions.tighteningTools.name',
+    descKey: 'home.divisions.tighteningTools.desc',
+    area: '40,000㎡',
+    image: tighteningToolsDivision
+  },
+  {
+    nameKey: 'home.divisions.compressorHost.name',
+    descKey: 'home.divisions.compressorHost.desc',
+    area: '38,000㎡',
+    image: compressorHostDivision
+  },
+  {
+    nameKey: 'home.divisions.precisionCompressor.name',
+    descKey: 'home.divisions.precisionCompressor.desc',
+    area: '120,000㎡',
+    image: precisionCompressorDivision
+  }
+]
 
 const researchItems = [
   { 
@@ -494,6 +546,175 @@ const onHeroLoad = () => {
   .stats-showcase {
     .stat-item {
       flex: 0 0 100%;
+    }
+  }
+}
+
+// 事业部展示区
+.divisions-section {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.divisions-showcase {
+  margin-top: 0;
+  
+  .division-item {
+    display: flex;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    min-height: 220px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    &.reverse {
+      flex-direction: row-reverse;
+      
+      .division-content {
+        text-align: left;
+        padding-left: 40px;
+        padding-right: 30px;
+        
+        &::before {
+          left: 0;
+          right: auto;
+          background: linear-gradient(90deg, #2CB5BE 0%, transparent 100%);
+        }
+      }
+    }
+  }
+  
+  .division-image {
+    flex: 0 0 55%;
+    max-width: 55%;
+    position: relative;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+  
+  .division-item:hover .division-image img {
+    transform: scale(1.03);
+  }
+  
+  .division-content {
+    flex: 1;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    position: relative;
+    background: linear-gradient(135deg, #fafbfc 0%, #f5f7f9 100%);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 60%;
+      background: linear-gradient(180deg, #2CB5BE 0%, transparent 100%);
+      border-radius: 2px;
+    }
+  }
+  
+  .division-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  
+  .division-area {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    font-size: 14px;
+    color: #2CB5BE;
+    font-weight: 500;
+    margin-bottom: 14px;
+    
+    .area-icon {
+      font-size: 16px;
+    }
+  }
+  
+  .division-item.reverse .division-area {
+    justify-content: flex-start;
+  }
+  
+  .division-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+    margin: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .divisions-showcase {
+    .division-item {
+      min-height: 180px;
+    }
+    
+    .division-image {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+    
+    .division-content {
+      padding: 24px 28px;
+    }
+    
+    .division-name {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .divisions-section {
+    padding: 40px 0;
+  }
+  
+  .divisions-showcase {
+    .division-item {
+      flex-direction: column !important;
+      min-height: auto;
+    }
+    
+    .division-image {
+      flex: none;
+      max-width: 100%;
+      height: 200px;
+    }
+    
+    .division-content {
+      text-align: center !important;
+      padding: 24px 20px !important;
+      
+      &::before {
+        display: none;
+      }
+    }
+    
+    .division-area {
+      justify-content: center !important;
     }
   }
 }

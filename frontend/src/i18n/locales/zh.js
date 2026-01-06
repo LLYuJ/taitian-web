@@ -100,6 +100,21 @@ export default {
       compressorHosts: '年产压缩主机',
       pneumaticTools: '年产气动工具'
     },
+    divisions: {
+      area: '建筑面积',
+      tighteningTools: {
+        name: '拧紧工具事业部',
+        desc: '年产100万台专业级气动工具、10万台工业级气动工具、5万台电池传感器定扭工具'
+      },
+      compressorHost: {
+        name: '压缩机主机事业部',
+        desc: '年产能30万台压缩机主机'
+      },
+      precisionCompressor: {
+        name: '精密机床/压缩机事业部',
+        desc: '主要生产无油涡旋、双螺杆水润滑、干式无油压缩机'
+      }
+    },
     research: {
       intro: '我们拥有一支以行业专家为带头人，以中青年技术骨干为主体，梯队结构合理的技术创新团队，我们始终以自主创新为基础，坚持专研前沿性项目和跨界新锐领域项目，实施迭代研发，打造行业知识产权高地。',
       concept: '研发理念',
