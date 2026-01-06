@@ -101,6 +101,7 @@ export default {
       pneumaticTools: '年产气动工具'
     },
     divisions: {
+      title: '事业部',
       area: '建筑面积',
       tighteningTools: {
         name: '拧紧工具事业部',
@@ -116,6 +117,7 @@ export default {
       }
     },
     research: {
+      title: '创新研发',
       intro: '我们拥有一支以行业专家为带头人，以中青年技术骨干为主体，梯队结构合理的技术创新团队，我们始终以自主创新为基础，坚持专研前沿性项目和跨界新锐领域项目，实施迭代研发，打造行业知识产权高地。',
       concept: '研发理念',
       conceptDesc: '坚持自主研发 锻造品质产品',

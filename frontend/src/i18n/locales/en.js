@@ -101,6 +101,7 @@ export default {
       pneumaticTools: 'Annual Pneumatic Tools'
     },
     divisions: {
+      title: 'Business Divisions',
       area: 'Building Area',
       tighteningTools: {
         name: 'Fastening Tools Division',
@@ -116,6 +117,7 @@ export default {
       }
     },
     research: {
+      title: 'Innovation & R&D',
       intro: 'We have a technical innovation team led by industry experts, with young and middle-aged technical backbone as the main body, with reasonable echelon structure. We always take independent innovation as the foundation, insist on researching cutting-edge projects and cross-industry innovative projects, implement iterative R&D, and build an industry intellectual property highland.',
       concept: 'R&D Philosophy',
       conceptDesc: 'Insist on independent R&D, forging quality products',

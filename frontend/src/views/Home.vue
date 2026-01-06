@@ -44,7 +44,6 @@
     <section class="products-section">
       <div class="container">
         <h2 class="section-title">{{ t('home.products.title') }}</h2>
-        <p class="section-subtitle">{{ t('home.products.subtitle') }}</p>
 
         <div class="products-grid">
           <div class="product-card card" v-for="product in products" :key="product.nameKey">
@@ -65,6 +64,7 @@
     <!-- 事业部展示 -->
     <section class="divisions-section">
       <div class="container">
+        <h2 class="section-title">{{ t('home.divisions.title') }}</h2>
         <div class="divisions-showcase">
           <div 
             v-for="(division, index) in divisions" 
@@ -91,6 +91,7 @@
     <!-- Research Section -->
     <section class="research-section">
       <div class="container">
+        <h2 class="section-title">{{ t('home.research.title') }}</h2>
         <p class="research-intro">
           {{ t('home.research.intro') }}
         </p>
