@@ -70,14 +70,35 @@ export default {
 
   // Footer
   footer: {
+    // Product Center
+    productCenter: 'Products',
+    precisionMachine: 'Precision Machine Tools',
+    screwCompressor: 'Screw Air Compressor',
+    compressorHost: 'Compressor Host',
+    electricTools: 'Electric Fastening Tools',
+    pneumaticTools: 'Pneumatic Fastening Tools',
+    lubricationEquipment: 'Lubrication Equipment',
+    // Service Support
+    serviceSupport: 'Support',
+    preSales: 'Pre-Sales Consultation',
+    afterSales: 'After-Sales Support',
+    documents: 'Documentation',
+    // Contact Us
     contactUs: 'Contact Us',
-    serviceLine: 'Hotline: 400-826-1128',
-    email: "Email: sales{'@'}chinatuta.com",
-    address: 'Address: No. 528 Haiyun Road, Jiaojiang District, Taizhou, Zhejiang, China',
-    quickLinks: 'Quick Links',
-    aboutUs: 'About Us',
+    companyAddress: 'Address: ',
+    addressValue: 'No. 528 Haiyun Road, Jiaojiang, Taizhou, Zhejiang, China',
+    phone: 'Tel: ',
+    phoneValue: '400-826-1128',
+    wechatLabel: 'WeChat: ',
+    wechatValue: 'taitian_group',
+    emailLabel: 'Email: ',
+    emailValue: "sales{'@'}chinatuta.com",
+    // Follow Us
     followUs: 'Follow Us',
-    wechat: 'WeChat Official Account',
+    wechatVideo: 'WeChat Video',
+    douyin: 'Douyin',
+    alibaba: 'Alibaba',
+    // Copyright
     copyright: 'COPYRIGHT © TAITIAN GROUP CO., LTD. ALL RIGHTS RESERVED'
   },
 

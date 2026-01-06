@@ -116,24 +116,47 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-content">
+          <!-- 产品中心 -->
           <div class="footer-section">
+            <h3>{{ t('footer.productCenter') }}</h3>
+            <router-link :to="localePath('/products/precision-machine')">{{ t('footer.precisionMachine') }}</router-link>
+            <router-link :to="localePath('/products/screw-compressor')">{{ t('footer.screwCompressor') }}</router-link>
+            <router-link :to="localePath('/products/compressor-host')">{{ t('footer.compressorHost') }}</router-link>
+            <router-link :to="localePath('/products/electric-tools')">{{ t('footer.electricTools') }}</router-link>
+            <router-link :to="localePath('/products/pneumatic-tools')">{{ t('footer.pneumaticTools') }}</router-link>
+            <router-link :to="localePath('/products/lubrication')">{{ t('footer.lubricationEquipment') }}</router-link>
+          </div>
+          <!-- 服务支持 -->
+          <div class="footer-section">
+            <h3>{{ t('footer.serviceSupport') }}</h3>
+            <router-link :to="localePath('/services/pre-sales')">{{ t('footer.preSales') }}</router-link>
+            <router-link :to="localePath('/services/after-sales')">{{ t('footer.afterSales') }}</router-link>
+            <router-link :to="localePath('/services/documents')">{{ t('footer.documents') }}</router-link>
+          </div>
+          <!-- 联系我们 -->
+          <div class="footer-section contact-section">
             <h3>{{ t('footer.contactUs') }}</h3>
-            <p>{{ t('footer.serviceLine') }}</p>
-            <p>{{ t('footer.email') }}</p>
-            <p>{{ t('footer.address') }}</p>
+            <p><span class="label">{{ t('footer.companyAddress') }}</span>{{ t('footer.addressValue') }}</p>
+            <p><span class="label">{{ t('footer.phone') }}</span>{{ t('footer.phoneValue') }}</p>
+            <p><span class="label">{{ t('footer.wechatLabel') }}</span>{{ t('footer.wechatValue') }}</p>
+            <p><span class="label">{{ t('footer.emailLabel') }}</span>{{ t('footer.emailValue') }}</p>
           </div>
-          <div class="footer-section">
-            <h3>{{ t('footer.quickLinks') }}</h3>
-            <router-link :to="localePath('/about')">{{ t('footer.aboutUs') }}</router-link>
-            <router-link :to="localePath('/products')">{{ t('nav.products') }}</router-link>
-            <router-link :to="localePath('/news')">{{ t('nav.news') }}</router-link>
-            <router-link :to="localePath('/contact')">{{ t('nav.contact') }}</router-link>
-          </div>
-          <div class="footer-section">
+          <!-- 关注我们 -->
+          <div class="footer-section follow-section">
             <h3>{{ t('footer.followUs') }}</h3>
-            <div class="qrcode-wrapper">
-              <img src="@/assets/images/misc/qrcode.jpg" alt="微信公众号" class="qrcode-img" loading="lazy" />
-              <p>{{ t('footer.wechat') }}</p>
+            <div class="qrcode-row">
+              <div class="qrcode-item">
+                <img src="@/assets/images/misc/qrcode.jpg" alt="微信视频号" class="qrcode-img" loading="lazy" />
+                <p>{{ t('footer.wechatVideo') }}</p>
+              </div>
+              <div class="qrcode-item">
+                <img src="@/assets/images/misc/qrcode.jpg" alt="抖音号" class="qrcode-img" loading="lazy" />
+                <p>{{ t('footer.douyin') }}</p>
+              </div>
+              <div class="qrcode-item">
+                <img src="@/assets/images/misc/qrcode.jpg" alt="阿里巴巴国际站" class="qrcode-img" loading="lazy" />
+                <p>{{ t('footer.alibaba') }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -580,58 +603,84 @@ const closeMenu = () => {
 }
 
 .footer {
-  background: #1a1a1a;
-  color: white;
+  background: #f8f8f8;
+  color: #333;
   padding: 60px 0 20px;
   margin-top: 80px;
 
   .footer-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
+    grid-template-columns: 1fr 1fr 1.2fr 1.5fr;
+    gap: 40px;
     margin-bottom: 40px;
   }
 
   .footer-section {
     h3 {
-      color: #2CB5BE;
+      color: #333;
       font-size: 18px;
-      margin-bottom: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      position: relative;
     }
 
     p, a {
-      color: #ccc;
-      margin: 10px 0;
+      color: #666;
+      margin: 12px 0;
       font-size: 14px;
       text-decoration: none;
       display: block;
+      line-height: 1.6;
 
       &:hover {
         color: #2CB5BE;
       }
     }
     
-    .qrcode-wrapper {
-      text-align: center;
-      
-      .qrcode-img {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 10px;
+    &.contact-section {
+      p {
+        .label {
+          color: #333;
+          font-weight: 500;
+        }
+      }
+    }
+    
+    &.follow-section {
+      .qrcode-row {
+        display: flex;
+        gap: 20px;
+        
+        .qrcode-item {
+          text-align: center;
+          
+          .qrcode-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border: 1px solid #eee;
+          }
+          
+          p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+          }
+        }
       }
     }
   }
 
   .footer-bottom {
-    border-top: 1px solid #333;
+    border-top: 1px solid #e0e0e0;
     padding-top: 20px;
     text-align: center;
 
     p {
-      color: #666;
-      font-size: 14px;
+      color: #999;
+      font-size: 13px;
     }
   }
 }
@@ -689,8 +738,34 @@ const closeMenu = () => {
 
   .footer {
     .footer-content {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 30px;
+    }
+    
+    .footer-section.follow-section {
+      grid-column: span 2;
+      
+      .qrcode-row {
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .footer {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    
+    .footer-section.follow-section {
+      grid-column: span 1;
+      
+      .qrcode-row {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
     }
   }
 }

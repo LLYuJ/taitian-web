@@ -70,14 +70,35 @@ export default {
 
   // 页脚
   footer: {
+    // 产品中心
+    productCenter: '产品中心',
+    precisionMachine: '精密机床',
+    screwCompressor: '螺杆式空气压缩机',
+    compressorHost: '螺杆式空气压缩机主机',
+    electricTools: '电动拧紧工具',
+    pneumaticTools: '气动拧紧工具',
+    lubricationEquipment: '润滑设备',
+    // 服务支持
+    serviceSupport: '服务支持',
+    preSales: '售前咨询',
+    afterSales: '售后保障',
+    documents: '产品资料',
+    // 联系我们
     contactUs: '联系我们',
-    serviceLine: '服务热线：400-826-1128',
-    email: "公司邮箱：sales{'@'}chinatuta.com",
-    address: '公司地址：浙江省台州市椒江区海韵路528号',
-    quickLinks: '快速链接',
-    aboutUs: '关于我们',
+    companyAddress: '公司地址：',
+    addressValue: '浙江省台州市椒江区海韵路528号',
+    phone: '电话：',
+    phoneValue: '400-826-1128',
+    wechatLabel: '微信：',
+    wechatValue: 'taitian_group',
+    emailLabel: '邮箱：',
+    emailValue: "sales{'@'}chinatuta.com",
+    // 关注我们
     followUs: '关注我们',
-    wechat: '微信公众号',
+    wechatVideo: '微信视频号',
+    douyin: '抖音号',
+    alibaba: '阿里巴巴国际站',
+    // 版权
     copyright: 'COPYRIGHT © 泰田集团股份有限公司 版权所有 ALL RIGHTS RESERVED'
   },
 
