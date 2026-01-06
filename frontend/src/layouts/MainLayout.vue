@@ -4,7 +4,7 @@
       <div class="container header-content">
         <div class="logo">
           <router-link :to="localePath('/')">
-            <img src="@/assets/images/logos/logo.png" alt="泰田集团" class="logo-img" />
+            <img src="@/assets/images/logos/logo_blue.png" alt="泰田集团" class="logo-img" />
           </router-link>
         </div>
         
@@ -323,6 +323,8 @@ const closeMenu = () => {
   }
 
   .logo {
+    flex-shrink: 0;
+    
     a {
       display: flex;
       align-items: center;
@@ -351,18 +353,31 @@ const closeMenu = () => {
       align-items: center;
       gap: 4px;
 
-      &:hover, &.router-link-active {
-        color: #2CB5BE;
-      }
-
-      &.router-link-active::after {
+      // 底线伪元素 - 默认隐藏
+      &::after {
         content: '';
         position: absolute;
         bottom: 0;
-        left: 16px;
-        right: 16px;
+        left: 50%;
+        width: 0;
         height: 3px;
         background: #2CB5BE;
+        transition: width 0.3s ease, left 0.3s ease;
+      }
+
+      // 选中状态只保持颜色，不显示底线
+      &.router-link-active {
+        color: #2CB5BE;
+      }
+
+      // hover 时变色并显示底线动画
+      &:hover {
+        color: #2CB5BE;
+        
+        &::after {
+          width: calc(100% - 32px);
+          left: 16px;
+        }
       }
       
       .dropdown-icon {
@@ -378,6 +393,11 @@ const closeMenu = () => {
       &:hover {
         .nav-item {
           color: #2CB5BE;
+          
+          &::after {
+            width: calc(100% - 32px);
+            left: 16px;
+          }
           
           .dropdown-icon {
             transform: rotate(180deg);
