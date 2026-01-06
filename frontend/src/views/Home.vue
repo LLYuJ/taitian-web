@@ -8,20 +8,19 @@
         class="hero-bg"
         @load="onHeroLoad"
       />
-      <div class="hero-content">
-        <h1 class="hero-title">{{ t('home.heroTitle') }}</h1>
-        <p class="hero-subtitle">{{ t('home.heroSubtitle') }}</p>
-        <router-link :to="localePath('/products')" class="industrial-button">{{ t('home.viewProducts') }}</router-link>
-      </div>
       <div class="hero-overlay"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">{{ t('home.heroTitle') }}</h1>
+          <p class="hero-subtitle">{{ t('home.heroSubtitle') }}</p>
+          <router-link :to="localePath('/products')" class="industrial-button">{{ t('home.viewProducts') }}</router-link>
+        </div>
+      </div>
     </section>
 
     <!-- Company Intro -->
     <section class="company-intro">
       <div class="container">
-        <h2 class="section-title">{{ t('home.companyIntro.title') }}</h2>
-        <p class="section-subtitle">{{ t('home.companyIntro.subtitle') }}</p>
-        
         <div class="intro-content">
           <p class="intro-text">
             {{ t('home.companyIntro.description') }}
@@ -277,11 +276,10 @@ const onHeroLoad = () => {
 
 <style lang="scss" scoped>
 .hero {
-  height: 600px;
+  height: 50vh;
+  min-height: 400px;
+  max-height: 500px;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: white;
   overflow: hidden;
 
@@ -292,28 +290,8 @@ const onHeroLoad = () => {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     z-index: 0;
-  }
-
-  .hero-content {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    padding: 0 20px;
-  }
-
-  .hero-title {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-  }
-
-  .hero-subtitle {
-    font-size: 24px;
-    margin-bottom: 40px;
-    opacity: 0.95;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
   }
 
   .hero-overlay {
@@ -322,27 +300,58 @@ const onHeroLoad = () => {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(44, 181, 190, 0.3) 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
     z-index: 1;
+  }
+
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content {
+    text-align: left;
+    max-width: 600px;
+    padding: 40px 0;
+  }
+
+  .hero-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: 2px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    margin-bottom: 32px;
+    opacity: 0.95;
+    line-height: 1.6;
+    font-weight: 400;
   }
   
   .industrial-button {
     text-decoration: none;
+    display: inline-block;
   }
 }
 
 .company-intro {
-  padding: 80px 0;
+  padding: 50px 0 40px;
   background: white;
 
   .intro-content {
     max-width: 1000px;
-    margin: 0 auto 60px;
+    margin: 0 auto 30px;
   }
 
   .intro-text {
-    font-size: 16px;
-    line-height: 2;
+    font-size: 15px;
+    line-height: 1.8;
     color: #666;
     text-align: center;
   }
@@ -353,8 +362,8 @@ const onHeroLoad = () => {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 80px 60px;
-  margin: 60px 0 0;
+  padding: 50px 60px;
+  margin: 30px 0 0;
   background: linear-gradient(
     180deg,
     #f8f9fa 0%,
@@ -414,11 +423,11 @@ const onHeroLoad = () => {
   }
   
   .stat-number {
-    font-size: 52px;
+    font-size: 42px;
     font-weight: 700;
     color: #1a1a1a;
     font-family: 'DIN Alternate', 'Oswald', 'Bebas Neue', 'Arial Black', sans-serif;
-    letter-spacing: -2px;
+    letter-spacing: -1px;
   }
   
   .stat-unit {
@@ -453,7 +462,7 @@ const onHeroLoad = () => {
     }
     
     .stat-number {
-      font-size: 44px;
+      font-size: 36px;
     }
   }
 }
@@ -468,11 +477,11 @@ const onHeroLoad = () => {
     }
     
     .stat-number {
-      font-size: 36px;
+      font-size: 28px;
     }
     
     .stat-unit {
-      font-size: 16px;
+      font-size: 14px;
     }
     
     .stat-label {
@@ -728,14 +737,21 @@ const onHeroLoad = () => {
 
 @media (max-width: 768px) {
   .hero {
-    height: 400px;
+    height: 45vh;
+    min-height: 320px;
+
+    .hero-content {
+      padding: 30px 0;
+    }
 
     .hero-title {
       font-size: 28px;
+      letter-spacing: 1px;
     }
 
     .hero-subtitle {
-      font-size: 16px;
+      font-size: 14px;
+      margin-bottom: 24px;
     }
   }
   
