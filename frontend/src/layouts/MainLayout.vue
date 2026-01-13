@@ -624,19 +624,24 @@ const closeMenu = () => {
     padding: 16px;
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 380px;
     
     .promo-image {
       flex: 1;
       border-radius: 6px;
       overflow: hidden;
       margin-bottom: 10px;
-      max-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9; // 浅灰背景，防止图片留白不协调
       
       img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        max-width: 100%;
+        max-height: 180px;
+        width: auto;
+        height: auto;
+        object-fit: contain; // 保持图片完整显示
       }
     }
     
