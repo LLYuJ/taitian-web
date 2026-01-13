@@ -128,7 +128,7 @@ export default {
     companyIntro: {
       title: 'Specialized & Innovative',
       subtitle: 'High-Tech Enterprise · National Little Giant Enterprise',
-      description: 'Taitian Group Co., Ltd. was established in 2007 with a registered capital of 60.88 million yuan and over 900 employees. We are a high-tech enterprise integrating R&D, production and sales, also recognized as a national "Specialized, Refined, Differential and Innovative" Little Giant Enterprise. We own three production bases for precision machine tools/air compressors, compressor hosts, fastening tools and precision mechanical parts processing. We believe that advanced equipment is the guarantee of first-class quality, importing foreign advanced production lines and equipped with more than 2,000 CNC machining equipment, fully deploying MES+ERP system to achieve high integration of human-machine information.'
+      description: 'Taitian Group Co., Ltd. was established in 2000 with a registered capital of 60.88 million yuan and over 1,000 employees. We are a high-tech enterprise integrating R&D, production and sales, also recognized as a national "Specialized, Refined, Differential and Innovative" Little Giant Enterprise. We own three production bases for precision machine tools/air compressors, compressor hosts, fastening tools and precision mechanical parts processing. We believe that advanced equipment is the guarantee of first-class quality, importing foreign advanced production lines and equipped with more than 3,000 CNC machining equipment, fully deploying MES+ERP system to achieve high integration of human-machine information.'
     },
     stats: {
       foundedIn: 'Founded In',
@@ -218,9 +218,9 @@ export default {
     title: 'About Us',
     subtitle: 'Focused on innovation and development in industrial manufacturing',
     companyInfo: 'Company Information',
-    companyDesc1: 'Taitian Group Co., Ltd. was established in 2007 with a registered capital of 60.88 million yuan and over 900 employees. We are a high-tech enterprise integrating R&D, production and sales, also recognized as a national "Specialized, Refined, Differential and Innovative" Little Giant Enterprise.',
+    companyDesc1: 'Taitian Group Co., Ltd. was established in 2000 with a registered capital of 60.88 million yuan and over 1,000 employees. We are a high-tech enterprise integrating R&D, production and sales, also recognized as a national "Specialized, Refined, Differential and Innovative" Little Giant Enterprise.',
     companyDesc2: 'The company owns three production bases for precision machine tools/air compressors, compressor hosts, fastening tools and precision mechanical parts processing.',
-    companyDesc3: 'We believe that advanced equipment is the guarantee of first-class quality, importing foreign advanced production lines and equipped with more than 2,000 CNC machining equipment, fully deploying MES+ERP system to achieve high integration of human-machine information, building Taitian\'s unique "one person, multiple machines, human-machine-material collaboration" multi-link process control system, forming Taitian\'s "specialized, refined, and sophisticated" intelligent manufacturing model.',
+    companyDesc3: 'We believe that advanced equipment is the guarantee of first-class quality, importing foreign advanced production lines and equipped with more than 3,000 CNC machining equipment, fully deploying MES+ERP system to achieve high integration of human-machine information, building Taitian\'s unique "one person, multiple machines, human-machine-material collaboration" multi-link process control system, forming Taitian\'s "specialized, refined, and sophisticated" intelligent manufacturing model.',
     stats: {
       founded: 'Founded',
       foundedUnit: '',

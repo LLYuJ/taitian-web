@@ -180,12 +180,12 @@ const heroBannerUrl = ref(heroBanner)
 
 // 企业统计数据 - 包含数字值和单位分离
 const companyStats = [
-  { numericValue: 2007, unit: '年', labelKey: 'home.stats.foundedIn', static: true }, // 年份不需要动画
+  { numericValue: 2000, unit: '年', labelKey: 'home.stats.foundedIn', static: true }, // 年份不需要动画
   { numericValue: 6088, unit: '万', labelKey: 'home.stats.registeredCapital' },
-  { numericValue: 900, unit: '+', labelKey: 'home.stats.employees' },
-  { numericValue: 2000, unit: '+', labelKey: 'home.stats.cncEquipment' },
+  { numericValue: 1000, unit: '+', labelKey: 'home.stats.employees' },
+  { numericValue: 3000, unit: '+', labelKey: 'home.stats.cncEquipment' },
   { numericValue: 120, unit: '+', labelKey: 'home.stats.patents' },
-  { numericValue: 20, unit: '万', labelKey: 'home.stats.compressorHosts' },
+  { numericValue: 30, unit: '万', labelKey: 'home.stats.compressorHosts' },
   { numericValue: 100, unit: '万', labelKey: 'home.stats.pneumaticTools' }
 ]
 

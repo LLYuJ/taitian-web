@@ -74,10 +74,10 @@ const { t } = useLocale()
 const backgroundImage = ref(bgImage)
 
 const stats = [
-  { value: '2007', unitKey: 'aboutPage.stats.foundedUnit', labelKey: 'aboutPage.stats.founded' },
+  { value: '2000', unitKey: 'aboutPage.stats.foundedUnit', labelKey: 'aboutPage.stats.founded' },
   { value: '6088', unitKey: 'aboutPage.stats.capitalUnit', labelKey: 'aboutPage.stats.capital' },
-  { value: '900', unitKey: 'aboutPage.stats.employeesUnit', labelKey: 'aboutPage.stats.employees' },
-  { value: '2000', unitKey: 'aboutPage.stats.cncUnit', labelKey: 'aboutPage.stats.cnc' },
+  { value: '1000', unitKey: 'aboutPage.stats.employeesUnit', labelKey: 'aboutPage.stats.employees' },
+  { value: '3000', unitKey: 'aboutPage.stats.cncUnit', labelKey: 'aboutPage.stats.cnc' },
   { value: '120', unitKey: 'aboutPage.stats.patentsUnit', labelKey: 'aboutPage.stats.patents' }
 ]
 
