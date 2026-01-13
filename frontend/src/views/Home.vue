@@ -85,11 +85,27 @@
             </div>
             <div class="division-content">
               <h3 class="division-name">{{ t(division.nameKey) }}</h3>
-              <div class="division-area">
-                <span class="area-icon">📐</span>
-                <span>{{ t('home.divisions.area') }}: {{ division.area }}</span>
-              </div>
               <p class="division-desc">{{ t(division.descKey) }}</p>
+              <div class="division-contact">
+                <div class="contact-item">
+                  <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                  </svg>
+                  <span>{{ t(division.phoneKey) }}</span>
+                </div>
+                <div class="contact-item">
+                  <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                  <span>{{ t(division.emailKey) }}</span>
+                </div>
+                <div class="contact-item">
+                  <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  </svg>
+                  <span>{{ t(division.addressKey) }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -141,15 +157,6 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>{{ t('home.cta.title') }}</h2>
-        <p>{{ t('home.cta.subtitle') }}</p>
-        <div class="phone-number">{{ t('home.cta.phone') }}</div>
-        <router-link :to="localePath('/contact')" class="industrial-button cta-btn">{{ t('home.cta.consult') }}</router-link>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -268,19 +275,25 @@ const divisions = [
   {
     nameKey: 'home.divisions.tighteningTools.name',
     descKey: 'home.divisions.tighteningTools.desc',
-    area: '40,000㎡',
+    phoneKey: 'home.divisions.tighteningTools.phone',
+    emailKey: 'home.divisions.tighteningTools.email',
+    addressKey: 'home.divisions.tighteningTools.address',
     image: tighteningToolsDivision
   },
   {
     nameKey: 'home.divisions.compressorHost.name',
     descKey: 'home.divisions.compressorHost.desc',
-    area: '38,000㎡',
+    phoneKey: 'home.divisions.compressorHost.phone',
+    emailKey: 'home.divisions.compressorHost.email',
+    addressKey: 'home.divisions.compressorHost.address',
     image: compressorHostDivision
   },
   {
     nameKey: 'home.divisions.precisionCompressor.name',
     descKey: 'home.divisions.precisionCompressor.desc',
-    area: '120,000㎡',
+    phoneKey: 'home.divisions.precisionCompressor.phone',
+    emailKey: 'home.divisions.precisionCompressor.email',
+    addressKey: 'home.divisions.precisionCompressor.address',
     image: precisionCompressorDivision
   }
 ]
@@ -613,7 +626,7 @@ const onHeroLoad = () => {
     overflow: hidden;
     margin-bottom: 20px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    min-height: 220px;
+    min-height: 280px;
     
     &:last-child {
       margin-bottom: 0;
@@ -623,10 +636,6 @@ const onHeroLoad = () => {
       flex-direction: row-reverse;
       
       .division-content {
-        text-align: left;
-        padding-left: 40px;
-        padding-right: 30px;
-        
         &::before {
           left: 0;
           right: auto;
@@ -656,11 +665,11 @@ const onHeroLoad = () => {
   
   .division-content {
     flex: 1;
-    padding: 30px 40px;
+    padding: 24px 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: right;
+    text-align: left;
     position: relative;
     background: linear-gradient(135deg, #fafbfc 0%, #f5f7f9 100%);
     
@@ -678,44 +687,54 @@ const onHeroLoad = () => {
   }
   
   .division-name {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
-    color: #1a1a1a;
+    color: #2CB5BE;
     margin-bottom: 12px;
     letter-spacing: 1px;
-  }
-  
-  .division-area {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 6px;
-    font-size: 14px;
-    color: #2CB5BE;
-    font-weight: 500;
-    margin-bottom: 14px;
-    
-    .area-icon {
-      font-size: 16px;
-    }
-  }
-  
-  .division-item.reverse .division-area {
-    justify-content: flex-start;
+    text-align: left;
   }
   
   .division-desc {
     font-size: 14px;
     line-height: 1.8;
     color: #666;
-    margin: 0;
+    margin: 0 0 16px 0;
+    text-align: justify;
+  }
+  
+  .division-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #555;
+      text-align: left;
+      
+      .contact-icon {
+        width: 16px;
+        height: 16px;
+        color: #2CB5BE;
+        flex-shrink: 0;
+      }
+      
+      span {
+        line-height: 1.4;
+      }
+    }
   }
 }
 
 @media (max-width: 992px) {
   .divisions-showcase {
     .division-item {
-      min-height: 180px;
+      min-height: 240px;
     }
     
     .division-image {
@@ -724,11 +743,15 @@ const onHeroLoad = () => {
     }
     
     .division-content {
-      padding: 24px 28px;
+      padding: 20px 24px;
     }
     
     .division-name {
       font-size: 18px;
+    }
+    
+    .division-desc {
+      font-size: 13px;
     }
   }
 }
@@ -751,7 +774,7 @@ const onHeroLoad = () => {
     }
     
     .division-content {
-      text-align: center !important;
+      text-align: left !important;
       padding: 24px 20px !important;
       
       &::before {
@@ -759,8 +782,18 @@ const onHeroLoad = () => {
       }
     }
     
-    .division-area {
-      justify-content: center !important;
+    .division-name {
+      text-align: left;
+    }
+    
+    .division-desc {
+      text-align: justify;
+    }
+    
+    .division-contact {
+      .contact-item {
+        text-align: left;
+      }
     }
   }
 }
@@ -965,41 +998,6 @@ const onHeroLoad = () => {
     
     .industrial-button {
       text-decoration: none;
-    }
-  }
-}
-
-.cta-section {
-  padding: 80px 0;
-  background: linear-gradient(135deg, #1a8a91 0%, #2CB5BE 100%);
-  color: white;
-  text-align: center;
-
-  h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
-
-  p {
-    font-size: 18px;
-    margin-bottom: 20px;
-    opacity: 0.9;
-  }
-
-  .phone-number {
-    font-size: 48px;
-    font-weight: 700;
-    margin: 30px 0;
-    letter-spacing: 2px;
-  }
-
-  .cta-btn {
-    background: white;
-    color: #2CB5BE;
-    text-decoration: none;
-    
-    &:hover {
-      background: #f0f0f0;
     }
   }
 }

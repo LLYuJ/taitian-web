@@ -658,8 +658,8 @@ const closeMenu = () => {
 }
 
 .footer {
-  background: #f8f8f8;
-  color: #333;
+  background: #000000;
+  color: #ffffff;
   padding: 60px 0 20px;
   margin-top: 80px;
 
@@ -672,7 +672,7 @@ const closeMenu = () => {
 
   .footer-section {
     h3 {
-      color: #333;
+      color: #ffffff;
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 24px;
@@ -680,12 +680,13 @@ const closeMenu = () => {
     }
 
     p, a {
-      color: #666;
+      color: #ffffff;
       margin: 12px 0;
       font-size: 14px;
       text-decoration: none;
       display: block;
       line-height: 1.6;
+      transition: color 0.3s ease;
 
       &:hover {
         color: #2CB5BE;
@@ -695,7 +696,7 @@ const closeMenu = () => {
     &.contact-section {
       p {
         .label {
-          color: #333;
+          color: #ffffff;
           font-weight: 500;
         }
       }
@@ -715,13 +716,17 @@ const closeMenu = () => {
             object-fit: cover;
             border-radius: 6px;
             margin-bottom: 8px;
-            border: 1px solid #eee;
+            border: 1px solid #333;
           }
           
           p {
             font-size: 12px;
-            color: #666;
+            color: #ffffff;
             margin: 0;
+            
+            &:hover {
+              color: #2CB5BE;
+            }
           }
         }
       }
@@ -729,12 +734,12 @@ const closeMenu = () => {
   }
 
   .footer-bottom {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #333;
     padding-top: 20px;
     text-align: center;
 
     p {
-      color: #999;
+      color: #cccccc;
       font-size: 13px;
     }
   }
