@@ -383,6 +383,7 @@ const closeMenu = () => {
     align-items: center;
     justify-content: space-between;
     height: 60px;
+    position: relative; // 作为 mega-menu 的定位参考
   }
 
   // 左侧 Logo 区域
@@ -446,7 +447,7 @@ const closeMenu = () => {
     }
     
     .nav-dropdown {
-      position: relative;
+      position: static; // 改为 static，让 mega-menu 相对于 header 定位
       
       &:hover {
         .nav-item {
@@ -496,25 +497,29 @@ const closeMenu = () => {
 // Mega Menu 样式
 .mega-menu {
   position: fixed;
-  top: 60px; // 与 header 高度一致
-  left: 0;
-  right: 0;
+  top: 60px; // 和 header 高度一致，紧贴 header 底部
+  left: 50%;
+  transform: translateX(-50%);
   background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-top: 1px solid #eee;
+  border-top: 1px solid #eee; // 顶部横线与标题栏底部横线平行
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
   z-index: 999;
+  width: 620px; // 适当减小宽度
   
   &.active {
     opacity: 1;
     visibility: visible;
   }
   
+  &.has-third-level {
+    width: 780px;
+  }
+  
   .mega-menu-inner {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     padding: 0 20px;
   }
   
@@ -732,10 +737,10 @@ const closeMenu = () => {
 
 @media (max-width: 1200px) {
   .mega-menu {
-    min-width: 500px !important;
+    width: 520px !important;
     
     &.has-third-level {
-      min-width: 700px !important;
+      width: 680px !important;
     }
     
     .promo-area {
