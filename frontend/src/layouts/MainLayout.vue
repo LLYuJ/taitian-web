@@ -1,110 +1,122 @@
 <template>
   <div class="main-layout">
     <header class="header">
-      <div class="container header-content">
-        <div class="logo">
-          <router-link :to="localePath('/')">
+      <div class="wide-container header-content">
+        <!-- 左侧 Logo 区域 -->
+        <div class="logo-area">
+          <router-link :to="localePath('/')" class="logo-link">
             <img src="@/assets/images/logos/logo_blue.png" alt="泰田集团" class="logo-img" />
           </router-link>
         </div>
         
-        <nav class="nav">
-          <!-- 首页 -->
-          <router-link :to="localePath('/')" class="nav-item">{{ t('nav.home') }}</router-link>
-          
-          <!-- 带下拉菜单的导航项 -->
-          <div 
-            v-for="menu in navigationMenus" 
-            :key="menu.key"
-            class="nav-dropdown"
-            @mouseenter="handleMenuEnter(menu)"
-            @mouseleave="handleMenuLeave"
-          >
-            <router-link 
-              :to="localePath(menu.path)" 
-              class="nav-item"
-              :class="{ 'has-submenu': menu.children?.length }"
-            >
-              {{ t(`nav.${menu.key}`) }}
-              <svg v-if="menu.children?.length" class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </router-link>
+        <!-- 右侧导航区域 -->
+        <div class="nav-area">
+          <nav class="nav">
+            <!-- 首页 -->
+            <router-link :to="localePath('/')" class="nav-item">{{ t('nav.home') }}</router-link>
             
-            <!-- Mega Menu 下拉面板 -->
+            <!-- 带下拉菜单的导航项 -->
             <div 
-              v-if="menu.children?.length"
-              class="mega-menu"
-              :class="{ 'active': activeMenu === menu.key, 'has-third-level': menu.hasThirdLevel }"
+              v-for="menu in navigationMenus" 
+              :key="menu.key"
+              class="nav-dropdown"
+              @mouseenter="handleMenuEnter(menu)"
+              @mouseleave="handleMenuLeave"
             >
-              <div class="mega-menu-inner">
-                <!-- 二级菜单标题 -->
-                <div class="mega-menu-header">
-                  <span class="mega-menu-title">{{ t(`nav.${menu.key}`) }}</span>
-                </div>
-                
-                <div class="mega-menu-content">
-                  <!-- 二级菜单列表 -->
-                  <div class="category-list">
-                    <div 
-                      v-for="child in menu.children" 
-                      :key="child.key"
-                      class="category-item"
-                      :class="{ 'active': activeCategory === child.key, 'has-children': child.children?.length }"
-                      @mouseenter="activeCategory = child.key"
-                    >
-                      <router-link 
-                        :to="localePath(child.path)"
-                        class="category-link"
-                        @click="closeMenu"
-                      >
-                        {{ t(`nav.sub.${child.key}`) }}
-                        <svg v-if="child.children?.length" class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </router-link>
-                    </div>
+              <router-link 
+                :to="localePath(menu.path)" 
+                class="nav-item"
+                :class="{ 'has-submenu': menu.children?.length }"
+              >
+                {{ t(`nav.${menu.key}`) }}
+                <svg v-if="menu.children?.length" class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </router-link>
+              
+              <!-- Mega Menu 下拉面板 -->
+              <div 
+                v-if="menu.children?.length"
+                class="mega-menu"
+                :class="{ 'active': activeMenu === menu.key, 'has-third-level': menu.hasThirdLevel }"
+              >
+                <div class="mega-menu-inner">
+                  <!-- 二级菜单标题 -->
+                  <div class="mega-menu-header">
+                    <span class="mega-menu-title">{{ t(`nav.${menu.key}`) }}</span>
                   </div>
                   
-                  <!-- 三级菜单列表 (仅产品中心有) -->
-                  <div v-if="menu.hasThirdLevel" class="product-list">
-                    <template v-for="child in menu.children" :key="child.key">
+                  <div class="mega-menu-content">
+                    <!-- 二级菜单列表 -->
+                    <div class="category-list">
                       <div 
-                        v-if="child.children?.length && activeCategory === child.key"
-                        class="product-items"
+                        v-for="child in menu.children" 
+                        :key="child.key"
+                        class="category-item"
+                        :class="{ 'active': activeCategory === child.key, 'has-children': child.children?.length }"
+                        @mouseenter="activeCategory = child.key"
                       >
                         <router-link 
-                          v-for="product in child.children"
-                          :key="product.key"
-                          :to="localePath(product.path)"
-                          class="product-link"
+                          :to="localePath(child.path)"
+                          class="category-link"
                           @click="closeMenu"
                         >
-                          {{ t(`nav.productItems.${product.key}`) }}
+                          {{ t(`nav.sub.${child.key}`) }}
+                          <svg v-if="child.children?.length" class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
                         </router-link>
                       </div>
-                    </template>
-                  </div>
-                  
-                  <!-- 右侧推荐区域 -->
-                  <div class="promo-area">
-                    <div class="promo-image">
-                      <img 
-                        :src="menu.key === 'products' ? getProductImage(activeCategory) : getPromoImage(menu.key)" 
-                        :alt="menu.key === 'products' && activeCategory ? t(`nav.sub.${activeCategory}`) : t(`nav.${menu.key}`)" 
-                      />
                     </div>
-                    <p class="promo-text">{{ t('nav.promoText') }}</p>
+                    
+                    <!-- 三级菜单列表 (仅产品中心有) -->
+                    <div v-if="menu.hasThirdLevel" class="product-list">
+                      <template v-for="child in menu.children" :key="child.key">
+                        <div 
+                          v-if="child.children?.length && activeCategory === child.key"
+                          class="product-items"
+                        >
+                          <router-link 
+                            v-for="product in child.children"
+                            :key="product.key"
+                            :to="localePath(product.path)"
+                            class="product-link"
+                            @click="closeMenu"
+                          >
+                            {{ t(`nav.productItems.${product.key}`) }}
+                          </router-link>
+                        </div>
+                      </template>
+                    </div>
+                    
+                    <!-- 右侧推荐区域 -->
+                    <div class="promo-area">
+                      <div class="promo-image">
+                        <img 
+                          :src="menu.key === 'products' ? getProductImage(activeCategory) : getPromoImage(menu.key)" 
+                          :alt="menu.key === 'products' && activeCategory ? t(`nav.sub.${activeCategory}`) : t(`nav.${menu.key}`)" 
+                        />
+                      </div>
+                      <p class="promo-text">{{ t('nav.promoText') }}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </nav>
+          
+          <!-- 右侧功能按钮 -->
+          <div class="header-actions">
+            <!-- 搜索按钮 -->
+            <button class="search-btn" @click="handleSearchClick">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21l-4.35-4.35"/>
+              </svg>
+            </button>
+            <span class="divider">|</span>
+            <LanguageSwitcher />
           </div>
-        </nav>
-        
-        <div class="header-actions">
-          <LanguageSwitcher />
-          <router-link to="/admin" class="admin-link">{{ t('nav.admin') }}</router-link>
         </div>
       </div>
     </header>
@@ -189,17 +201,8 @@ const { t, localePath } = useLocale()
 const activeMenu = ref(null)
 const activeCategory = ref(null)
 
-// 导航菜单结构配置
+// 导航菜单结构配置 - 按图片顺序：产品中心、解决方案、研发、智造、新闻中心、加入我们、服务与支持、关于我们
 const navigationMenus = [
-  {
-    key: 'about',
-    path: '/about',
-    children: [
-      { key: 'overview', path: '/about/overview' },
-      { key: 'production', path: '/about/production' },
-      { key: 'honors', path: '/about/honors' }
-    ]
-  },
   {
     key: 'products',
     path: '/products',
@@ -253,12 +256,12 @@ const navigationMenus = [
     ]
   },
   {
-    key: 'services',
-    path: '/services',
+    key: 'solutions',
+    path: '/solutions',
     children: [
-      { key: 'preSales', path: '/services/pre-sales' },
-      { key: 'afterSales', path: '/services/after-sales' },
-      { key: 'documents', path: '/services/documents' }
+      { key: 'automotive', path: '/solutions/automotive' },
+      { key: 'industrial', path: '/solutions/industrial' },
+      { key: 'energy', path: '/solutions/energy' }
     ]
   },
   {
@@ -270,6 +273,15 @@ const navigationMenus = [
     ]
   },
   {
+    key: 'manufacturing',
+    path: '/manufacturing',
+    children: [
+      { key: 'smartFactory', path: '/manufacturing/smart-factory' },
+      { key: 'equipment', path: '/manufacturing/equipment' },
+      { key: 'quality', path: '/manufacturing/quality' }
+    ]
+  },
+  {
     key: 'news',
     path: '/news',
     children: [
@@ -278,11 +290,38 @@ const navigationMenus = [
     ]
   },
   {
-    key: 'contact',
-    path: '/contact',
-    children: []
+    key: 'careers',
+    path: '/careers',
+    children: [
+      { key: 'recruitment', path: '/careers/recruitment' },
+      { key: 'culture', path: '/careers/culture' }
+    ]
+  },
+  {
+    key: 'services',
+    path: '/services',
+    children: [
+      { key: 'preSales', path: '/services/pre-sales' },
+      { key: 'afterSales', path: '/services/after-sales' },
+      { key: 'documents', path: '/services/documents' }
+    ]
+  },
+  {
+    key: 'about',
+    path: '/about',
+    children: [
+      { key: 'overview', path: '/about/overview' },
+      { key: 'production', path: '/about/production' },
+      { key: 'honors', path: '/about/honors' }
+    ]
   }
 ]
+
+// 搜索按钮点击（暂时无功能）
+const handleSearchClick = () => {
+  // 暂时不做任何处理
+  console.log('Search clicked')
+}
 
 // 获取推荐区域图片（非产品菜单使用统一图片）
 const getPromoImage = () => {
@@ -333,80 +372,76 @@ const closeMenu = () => {
 
 .header {
   background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 1px solid #eee;
 
   .header-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    height: 60px;
   }
 
-  .logo {
+  // 左侧 Logo 区域
+  .logo-area {
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
     
-    a {
+    .logo-link {
       display: flex;
       align-items: center;
     }
     
     .logo-img {
-      height: 50px;
+      height: 36px;
       width: auto;
     }
+  }
+
+  // 右侧导航区域
+  .nav-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   .nav {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0;
 
     .nav-item {
       color: #333;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
-      padding: 8px 16px;
+      padding: 8px 14px;
       position: relative;
       transition: color 0.3s;
       display: flex;
       align-items: center;
       gap: 4px;
+      white-space: nowrap;
 
-      // 底线伪元素 - 默认隐藏
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 3px;
-        background: #2CB5BE;
-        transition: width 0.3s ease, left 0.3s ease;
-      }
-
-      // 选中状态只保持颜色，不显示底线
+      // 选中状态 - 使用主题色
       &.router-link-active {
         color: #2CB5BE;
       }
 
-      // hover 时变色并显示底线动画
+      // hover 时变色
       &:hover {
         color: #2CB5BE;
-        
-        &::after {
-          width: calc(100% - 32px);
-          left: 16px;
-        }
       }
       
       .dropdown-icon {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         transition: transform 0.3s;
+        opacity: 0.6;
       }
     }
     
@@ -416,11 +451,6 @@ const closeMenu = () => {
       &:hover {
         .nav-item {
           color: #2CB5BE;
-          
-          &::after {
-            width: calc(100% - 32px);
-            left: 16px;
-          }
           
           .dropdown-icon {
             transform: rotate(180deg);
@@ -433,16 +463,32 @@ const closeMenu = () => {
   .header-actions {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     
-    .admin-link {
-      color: #666;
-      text-decoration: none;
-      font-size: 14px;
+    .search-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       
-      &:hover {
+      .search-icon {
+        width: 18px;
+        height: 18px;
+        color: #333;
+        transition: color 0.3s;
+      }
+      
+      &:hover .search-icon {
         color: #2CB5BE;
       }
+    }
+    
+    .divider {
+      color: #ddd;
+      font-size: 14px;
     }
   }
 }

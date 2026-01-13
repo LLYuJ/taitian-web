@@ -2,19 +2,23 @@ export default {
   // 导航
   nav: {
     home: '首页',
-    about: '关于泰田',
+    about: '关于我们',
     products: '产品中心',
-    services: '服务支持',
-    research: '创新研发',
-    news: '新闻资讯',
+    solutions: '解决方案',
+    services: '服务与支持',
+    research: '研发',
+    manufacturing: '智造',
+    news: '新闻中心',
+    careers: '加入我们',
     contact: '联系我们',
     admin: '管理后台',
+    stockCode: '股票代码 301317',
     promoText: '无论是在产品研发阶段还是在部署和迭代阶段，我们都将全力为您提供专业的支持。',
     
     // 二级导航
     sub: {
-      // 关于泰田
-      overview: '泰田概况',
+      // 关于我们
+      overview: '公司概况',
       production: '生产实景',
       honors: '荣誉资质',
       
@@ -26,18 +30,32 @@ export default {
       pneumaticTools: '气动拧紧工具',
       lubricationEquipment: '润滑设备',
       
+      // 解决方案
+      automotive: '汽车制造',
+      industrial: '工业自动化',
+      energy: '能源行业',
+      
       // 服务支持
       preSales: '售前咨询',
       afterSales: '售后保障',
       documents: '产品资料',
       
-      // 创新研发
+      // 研发
       techCenter: '技术中心',
       patents: '专利认证',
       
-      // 新闻资讯
-      companyNews: '泰田新闻',
-      exhibitions: '展会现场'
+      // 智造
+      smartFactory: '智能工厂',
+      equipment: '生产设备',
+      quality: '品质管控',
+      
+      // 新闻中心
+      companyNews: '公司新闻',
+      exhibitions: '展会现场',
+      
+      // 加入我们
+      recruitment: '人才招聘',
+      culture: '企业文化'
     },
     
     // 三级导航 - 产品详情

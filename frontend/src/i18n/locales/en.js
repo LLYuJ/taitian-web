@@ -4,11 +4,15 @@ export default {
     home: 'Home',
     about: 'About Us',
     products: 'Products',
-    services: 'Services',
+    solutions: 'Solutions',
+    services: 'Services & Support',
     research: 'R&D',
-    news: 'News',
+    manufacturing: 'Smart Manufacturing',
+    news: 'News Center',
+    careers: 'Careers',
     contact: 'Contact',
     admin: 'Admin',
+    stockCode: 'Stock Code 301317',
     promoText: 'Whether in the R&D phase or deployment and iteration phase, we will provide you with professional support.',
     
     // Second level navigation
@@ -26,6 +30,11 @@ export default {
       pneumaticTools: 'Pneumatic Fastening Tools',
       lubricationEquipment: 'Lubrication Equipment',
       
+      // Solutions
+      automotive: 'Automotive Manufacturing',
+      industrial: 'Industrial Automation',
+      energy: 'Energy Industry',
+      
       // Services
       preSales: 'Pre-Sales Consultation',
       afterSales: 'After-Sales Support',
@@ -35,9 +44,18 @@ export default {
       techCenter: 'Technology Center',
       patents: 'Patents & Certifications',
       
+      // Smart Manufacturing
+      smartFactory: 'Smart Factory',
+      equipment: 'Production Equipment',
+      quality: 'Quality Control',
+      
       // News
       companyNews: 'Company News',
-      exhibitions: 'Exhibitions'
+      exhibitions: 'Exhibitions',
+      
+      // Careers
+      recruitment: 'Recruitment',
+      culture: 'Company Culture'
     },
     
     // Third level navigation - Product details
