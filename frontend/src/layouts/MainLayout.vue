@@ -314,6 +314,11 @@ const navigationMenus = [
       { key: 'production', path: '/about/production' },
       { key: 'honors', path: '/about/honors' }
     ]
+  },
+  {
+    key: 'contact',
+    path: '/contact',
+    children: []
   }
 ]
 

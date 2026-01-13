@@ -330,6 +330,12 @@ export default {
   contactPage: {
     title: 'Contact Us',
     subtitle: 'We look forward to cooperating with you',
+    heroTitle: 'We look forward to your contact!',
+    heroSubtitle: 'Any cooperation consultation, feedback, or creative inspiration will receive our focused response here.',
+    companyName: 'Taitian Group',
+    companyDesc: 'We focus on providing comprehensive solutions centered on highly reliable fastening tools, energy-efficient air compressors, and precision machine tools. We are committed to improving the efficiency, reliability, and sustainability of industrial production, helping customers create continuously growing outstanding value.',
+    formTitle: 'How can we help you?',
+    formSubtitle: 'Please leave your questions here and we will contact you as soon as possible.',
     contactInfo: 'Contact Information',
     hotline: 'Service Hotline',
     email: 'Company Email',
@@ -341,15 +347,17 @@ export default {
     form: {
       name: 'Name',
       namePlaceholder: 'Please enter your name',
+      company: 'Company',
+      companyPlaceholder: 'Please enter your company name',
       phone: 'Phone',
-      phonePlaceholder: 'Please enter your phone number',
+      phonePlaceholder: '131 2345 6789',
       email: 'Email',
       emailPlaceholder: 'Please enter your email address',
       message: 'Message',
       messagePlaceholder: 'Please enter your message',
       submit: 'Submit',
       fillComplete: 'Please fill in all required fields',
-      submitSuccess: 'Submitted successfully! We will contact you soon!'
+      submitSuccess: 'Submitted successfully! We will contact you as soon as possible!'
     }
   },
 

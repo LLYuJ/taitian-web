@@ -1,81 +1,81 @@
 <template>
   <div class="contact-page">
-    <div class="page-header">
-      <img 
-        :src="headerBg" 
-        :alt="t('contactPage.title')" 
-        class="header-bg"
-      />
-      <div class="header-content">
-        <h1>{{ t('contactPage.title') }}</h1>
-        <p>{{ t('contactPage.subtitle') }}</p>
+    <!-- 面包屑导航 -->
+    <div class="breadcrumb-container">
+      <div class="container">
+        <nav class="breadcrumb">
+          <router-link :to="localePath('/')">{{ t('nav.home') }}</router-link>
+          <span class="separator">&gt;</span>
+          <span class="current">{{ t('contactPage.title') }}</span>
+        </nav>
       </div>
-      <div class="header-overlay"></div>
     </div>
 
-    <section class="contact-content">
+    <!-- 页面头部 Banner -->
+    <div class="page-header">
+      <div class="header-bg-image"></div>
+      <div class="header-content">
+        <h1>{{ t('contactPage.heroTitle') }}</h1>
+        <p>{{ t('contactPage.heroSubtitle') }}</p>
+      </div>
+    </div>
+
+    <!-- 公司介绍区域 -->
+    <section class="company-intro">
       <div class="container">
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h2>{{ t('contactPage.contactInfo') }}</h2>
-            
-            <div class="info-item">
-              <div class="info-icon">📞</div>
-              <div class="info-text">
-                <h4>{{ t('contactPage.hotline') }}</h4>
-                <p>400-826-1128</p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">📧</div>
-              <div class="info-text">
-                <h4>{{ t('contactPage.email') }}</h4>
-                <p>sales@chinatuta.com</p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">📍</div>
-              <div class="info-text">
-                <h4>{{ t('contactPage.address') }}</h4>
-                <p>{{ t('contactPage.addressValue') }}</p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">📮</div>
-              <div class="info-text">
-                <h4>{{ t('contactPage.postalCode') }}</h4>
-                <p>318000</p>
-              </div>
-            </div>
-            
-            <div class="qrcode-section">
-              <img :src="qrcodeImg" alt="微信公众号" class="qrcode" loading="lazy" />
-              <p>{{ t('contactPage.scanQrcode') }}</p>
+        <div class="intro-grid">
+          <div class="intro-image">
+            <img :src="companyImage" alt="泰田集团" />
+          </div>
+          <div class="intro-content">
+            <h2>{{ t('contactPage.companyName') }}</h2>
+            <p class="intro-desc">{{ t('contactPage.companyDesc') }}</p>
+            <div class="contact-item">
+              <img src="@/assets/images/icons/tel.png" alt="电话" class="contact-icon" />
+              <span class="contact-text">400-826-1128</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="contact-form card">
-            <h2>{{ t('contactPage.onlineConsult') }}</h2>
+    <!-- 联系表单区域 -->
+    <section class="contact-form-section">
+      <div class="container">
+        <div class="form-header">
+          <h2>{{ t('contactPage.formTitle') }}</h2>
+          <p>{{ t('contactPage.formSubtitle') }}</p>
+        </div>
+        
+        <div class="form-content">
+          <div class="contact-form">
             <form @submit.prevent="submitForm">
-              <div class="form-group">
-                <label>{{ t('contactPage.form.name') }}</label>
-                <input v-model="form.name" type="text" :placeholder="t('contactPage.form.namePlaceholder')" />
+              <div class="form-row">
+                <div class="form-group">
+                  <label>{{ t('contactPage.form.name') }}</label>
+                  <input v-model="form.name" type="text" :placeholder="t('contactPage.form.namePlaceholder')" />
+                </div>
+                <div class="form-group">
+                  <label>{{ t('contactPage.form.company') }} <span class="required">*</span></label>
+                  <input v-model="form.company" type="text" :placeholder="t('contactPage.form.companyPlaceholder')" />
+                </div>
               </div>
               
-              <div class="form-group">
-                <label>{{ t('contactPage.form.phone') }}</label>
-                <input v-model="form.phone" type="tel" :placeholder="t('contactPage.form.phonePlaceholder')" />
+              <div class="form-row">
+                <div class="form-group">
+                  <label>{{ t('contactPage.form.phone') }}</label>
+                  <div class="phone-input">
+                    <span class="country-code">🇨🇳</span>
+                    <input v-model="form.phone" type="tel" :placeholder="t('contactPage.form.phonePlaceholder')" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>{{ t('contactPage.form.email') }} <span class="required">*</span></label>
+                  <input v-model="form.email" type="email" :placeholder="t('contactPage.form.emailPlaceholder')" />
+                </div>
               </div>
               
-              <div class="form-group">
-                <label>{{ t('contactPage.form.email') }}</label>
-                <input v-model="form.email" type="email" :placeholder="t('contactPage.form.emailPlaceholder')" />
-              </div>
-              
-              <div class="form-group">
+              <div class="form-group full-width">
                 <label>{{ t('contactPage.form.message') }}</label>
                 <textarea 
                   v-model="form.message" 
@@ -84,10 +84,16 @@
                 ></textarea>
               </div>
               
-              <button type="submit" class="submit-button industrial-button">
+              <button type="submit" class="submit-button">
                 {{ t('contactPage.form.submit') }}
               </button>
             </form>
+          </div>
+          
+          <div class="captcha-area">
+            <div class="captcha-box">
+              <span class="captcha-text">人机</span>
+            </div>
           </div>
         </div>
       </div>
@@ -99,23 +105,22 @@
 import { reactive, ref } from 'vue'
 import { useLocale } from '@/composables/useLocale'
 
-import bgImage from '@/assets/images/backgrounds/in-bg2.jpg'
-import qrcode from '@/assets/images/misc/qrcode.jpg'
+import companyImg from '@/assets/images/banners/new_factory.png'
 
-const { t } = useLocale()
+const { t, localePath } = useLocale()
 
-const headerBg = ref(bgImage)
-const qrcodeImg = ref(qrcode)
+const companyImage = ref(companyImg)
 
 const form = reactive({
   name: '',
+  company: '',
   phone: '',
   email: '',
   message: ''
 })
 
 const submitForm = () => {
-  if (!form.name || !form.phone || !form.message) {
+  if (!form.company || !form.email) {
     alert(t('contactPage.form.fillComplete'))
     return
   }
@@ -124,6 +129,7 @@ const submitForm = () => {
   
   // 清空表单
   form.name = ''
+  form.company = ''
   form.phone = ''
   form.email = ''
   form.message = ''
@@ -131,144 +137,195 @@ const submitForm = () => {
 </script>
 
 <style lang="scss" scoped>
+// 面包屑导航
+.breadcrumb-container {
+  background: #f5f5f5;
+  padding: 12px 0;
+  border-bottom: 1px solid #e8e8e8;
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    
+    a {
+      color: #0066cc;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    .separator {
+      margin: 0 8px;
+      color: #999;
+    }
+    
+    .current {
+      color: #666;
+    }
+  }
+}
+
+// 页面头部 Banner
 .page-header {
   position: relative;
-  height: 300px;
+  height: 220px;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
   
-  .header-bg {
+  .header-bg-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background: linear-gradient(135deg, #3EC6CB 0%, #4FD1C5 50%, #5DD3C8 100%);
     z-index: 0;
+    
+    // 添加Logo水印效果
+    &::after {
+      content: '';
+      position: absolute;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 300px;
+      height: 300px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20 80 L20 20 L80 20' stroke='rgba(255,255,255,0.15)' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M30 70 L30 30 L70 30 L70 50' stroke='rgba(255,255,255,0.15)' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M55 45 L75 65' stroke='rgba(255,255,255,0.15)' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M70 50 L80 60' stroke='rgba(255,255,255,0.15)' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.8;
+    }
   }
   
   .header-content {
     position: relative;
     z-index: 2;
-    text-align: center;
+    padding-left: 10%;
     color: white;
     
     h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
     }
 
     p {
-      font-size: 20px;
+      font-size: 16px;
       opacity: 0.95;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+      max-width: 600px;
+      line-height: 1.8;
     }
-  }
-  
-  .header-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(44, 181, 190, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
-    z-index: 1;
   }
 }
 
-.contact-content {
-  padding: 80px 0;
-  background: #f8f9fa;
+// 公司介绍区域
+.company-intro {
+  padding: 60px 0;
+  background: #fff;
 
-  .contact-grid {
+  .intro-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: start;
+    align-items: center;
   }
-
-  .contact-info {
-    h2 {
-      font-size: 28px;
-      color: #333;
-      margin-bottom: 40px;
+  
+  .intro-image {
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
-
-    .info-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
+  }
+  
+  .intro-content {
+    h2 {
+      font-size: 24px;
+      color: #0088cc;
+      font-weight: 600;
       margin-bottom: 20px;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-      transition: all 0.3s;
-      
-      &:hover {
-        transform: translateX(5px);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .info-icon {
-        font-size: 28px;
-        flex-shrink: 0;
-      }
-
-      .info-text {
-        h4 {
-          font-size: 16px;
-          color: #333;
-          margin-bottom: 8px;
-        }
-
-        p {
-          font-size: 15px;
-          color: #666;
-          margin: 0;
-        }
-      }
     }
     
-    .qrcode-section {
-      margin-top: 30px;
-      text-align: center;
-      padding: 25px;
-      background: white;
-      border-radius: 12px;
+    .intro-desc {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       
-      .qrcode {
-        width: 140px;
-        height: 140px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 10px;
+      .contact-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
       }
       
-      p {
-        font-size: 14px;
-        color: #666;
-        margin: 0;
+      .contact-text {
+        font-size: 18px;
+        color: #333;
+        font-weight: 500;
       }
     }
   }
+}
 
-  .contact-form {
-    padding: 40px;
-    background: white;
-    border-radius: 12px;
-
+// 联系表单区域
+.contact-form-section {
+  padding: 60px 0 80px;
+  background: #f8f9fa;
+  
+  .form-header {
+    margin-bottom: 40px;
+    
     h2 {
       font-size: 28px;
-      color: #333;
-      margin-bottom: 30px;
+      color: #0088cc;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    p {
+      font-size: 15px;
+      color: #666;
+    }
+  }
+  
+  .form-content {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 40px;
+    align-items: start;
+  }
+  
+  .contact-form {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 20px;
     }
     
     .form-group {
       margin-bottom: 20px;
+      
+      &.full-width {
+        margin-bottom: 24px;
+      }
       
       label {
         display: block;
@@ -276,25 +333,59 @@ const submitForm = () => {
         color: #333;
         margin-bottom: 8px;
         font-weight: 500;
+        
+        .required {
+          color: #ff4d4f;
+        }
       }
       
       input, textarea {
         width: 100%;
         padding: 12px 15px;
         border: 1px solid #e0e0e0;
-        border-radius: 8px;
+        border-radius: 4px;
         font-size: 14px;
         transition: all 0.3s;
         box-sizing: border-box;
+        background: #fff;
         
         &:focus {
           outline: none;
-          border-color: #2CB5BE;
-          box-shadow: 0 0 0 3px rgba(44, 181, 190, 0.1);
+          border-color: #0088cc;
+          box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1);
         }
         
         &::placeholder {
-          color: #aaa;
+          color: #bbb;
+        }
+      }
+      
+      .phone-input {
+        display: flex;
+        align-items: center;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        overflow: hidden;
+        background: #fff;
+        
+        &:focus-within {
+          border-color: #0088cc;
+          box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1);
+        }
+        
+        .country-code {
+          padding: 12px;
+          background: #f9f9f9;
+          border-right: 1px solid #e0e0e0;
+          font-size: 16px;
+        }
+        
+        input {
+          border: none;
+          
+          &:focus {
+            box-shadow: none;
+          }
         }
       }
       
@@ -306,25 +397,85 @@ const submitForm = () => {
 
     .submit-button {
       width: 100%;
-      height: 50px;
+      height: 48px;
       font-size: 16px;
-      border-radius: 8px;
+      border-radius: 4px;
       cursor: pointer;
+      background: #0088cc;
+      color: white;
+      border: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      
+      &:hover {
+        background: #0077b3;
+      }
     }
+  }
+  
+  .captcha-area {
+    .captcha-box {
+      width: 120px;
+      height: 120px;
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      .captcha-text {
+        font-size: 24px;
+        color: #999;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .company-intro .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .contact-form-section .form-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-form-section .captcha-area {
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
   .page-header {
-    height: 250px;
+    height: 180px;
     
-    .header-content h1 {
-      font-size: 32px;
+    .header-content {
+      padding-left: 5%;
+      
+      h1 {
+        font-size: 28px;
+      }
+      
+      p {
+        font-size: 14px;
+      }
+    }
+    
+    .header-bg-image::after {
+      display: none;
     }
   }
   
-  .contact-content .contact-grid {
-    grid-template-columns: 1fr;
+  .contact-form-section .contact-form {
+    padding: 24px;
+    
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
   }
 }
 </style>
