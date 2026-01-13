@@ -13,7 +13,15 @@
         <div class="hero-content">
           <h1 class="hero-title">{{ t('home.heroTitle') }}</h1>
           <p class="hero-subtitle">{{ t('home.heroSubtitle') }}</p>
-          <router-link :to="localePath('/products')" class="industrial-button">{{ t('home.viewProducts') }}</router-link>
+          <div class="hero-buttons">
+            <router-link :to="localePath('/products')" class="industrial-button">{{ t('home.viewProducts') }}</router-link>
+            <router-link :to="localePath('/contact')" class="hero-phone-btn">
+              <svg class="phone-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              400-826-1128
+            </router-link>
+          </div>
         </div>
       </div>
     </section>
@@ -391,9 +399,42 @@ const onHeroLoad = () => {
     font-weight: 400;
   }
   
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  
   .industrial-button {
     text-decoration: none;
     display: inline-block;
+  }
+  
+  .hero-phone-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    
+    .phone-icon {
+      width: 18px;
+      height: 18px;
+    }
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: white;
+      transform: translateY(-2px);
+    }
   }
 }
 
@@ -987,6 +1028,17 @@ const onHeroLoad = () => {
     .hero-subtitle {
       font-size: 14px;
       margin-bottom: 24px;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .hero-phone-btn {
+      padding: 10px 18px;
+      font-size: 14px;
     }
   }
   
