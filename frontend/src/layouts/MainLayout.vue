@@ -256,15 +256,6 @@ const navigationMenus = [
     ]
   },
   {
-    key: 'solutions',
-    path: '/solutions',
-    children: [
-      { key: 'automotive', path: '/solutions/automotive' },
-      { key: 'industrial', path: '/solutions/industrial' },
-      { key: 'energy', path: '/solutions/energy' }
-    ]
-  },
-  {
     key: 'research',
     path: '/research',
     children: [
@@ -273,28 +264,11 @@ const navigationMenus = [
     ]
   },
   {
-    key: 'manufacturing',
-    path: '/manufacturing',
-    children: [
-      { key: 'smartFactory', path: '/manufacturing/smart-factory' },
-      { key: 'equipment', path: '/manufacturing/equipment' },
-      { key: 'quality', path: '/manufacturing/quality' }
-    ]
-  },
-  {
     key: 'news',
     path: '/news',
     children: [
       { key: 'companyNews', path: '/news/company' },
       { key: 'exhibitions', path: '/news/exhibitions' }
-    ]
-  },
-  {
-    key: 'careers',
-    path: '/careers',
-    children: [
-      { key: 'recruitment', path: '/careers/recruitment' },
-      { key: 'culture', path: '/careers/culture' }
     ]
   },
   {
