@@ -495,38 +495,35 @@ const closeMenu = () => {
 
 // Mega Menu 样式
 .mega-menu {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
+  top: 60px; // 与 header 高度一致
+  left: 0;
+  right: 0;
   background: white;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #eee;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  min-width: 600px;
+  z-index: 999;
   
   &.active {
     opacity: 1;
     visibility: visible;
   }
   
-  &.has-third-level {
-    min-width: 900px;
-  }
-  
   .mega-menu-inner {
-    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
   
   .mega-menu-header {
-    padding: 16px 24px;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
-    background: #fafafa;
     
     .mega-menu-title {
-      font-size: 14px;
+      font-size: 13px;
       color: #999;
       font-weight: 500;
     }
@@ -534,42 +531,42 @@ const closeMenu = () => {
   
   .mega-menu-content {
     display: flex;
-    min-height: 280px;
+    min-height: 200px;
   }
   
   // 二级分类列表
   .category-list {
-    width: 200px;
+    width: 160px;
     border-right: 1px solid #eee;
-    padding: 12px 0;
+    padding: 8px 0;
     
     .category-item {
       .category-link {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 12px 24px;
+        padding: 8px 16px;
         color: #333;
         text-decoration: none;
-        font-size: 15px;
+        font-size: 14px;
         transition: all 0.2s;
         
         .arrow-icon {
-          width: 16px;
-          height: 16px;
+          width: 14px;
+          height: 14px;
           opacity: 0;
           transition: opacity 0.2s;
         }
         
         &:hover {
-          background: #f5f5f5;
+          background: rgba(44, 181, 190, 0.1);
           color: #2CB5BE;
         }
       }
       
       &.active {
         .category-link {
-          background: #f07c00;
+          background: #2CB5BE;
           color: white;
           
           .arrow-icon {
@@ -592,9 +589,9 @@ const closeMenu = () => {
   
   // 三级产品列表
   .product-list {
-    width: 280px;
+    width: 180px;
     border-right: 1px solid #eee;
-    padding: 12px 0;
+    padding: 8px 0;
     background: #fafafa;
     
     .product-items {
@@ -603,10 +600,10 @@ const closeMenu = () => {
     }
     
     .product-link {
-      padding: 10px 24px;
+      padding: 8px 16px;
       color: #555;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       transition: all 0.2s;
       
       &:hover {
@@ -619,15 +616,17 @@ const closeMenu = () => {
   // 推荐区域
   .promo-area {
     flex: 1;
-    padding: 24px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
+    max-width: 400px;
     
     .promo-image {
       flex: 1;
-      border-radius: 8px;
+      border-radius: 6px;
       overflow: hidden;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
+      max-height: 160px;
       
       img {
         width: 100%;
@@ -637,9 +636,9 @@ const closeMenu = () => {
     }
     
     .promo-text {
-      font-size: 14px;
+      font-size: 12px;
       color: #666;
-      line-height: 1.6;
+      line-height: 1.5;
     }
   }
 }
