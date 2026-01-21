@@ -104,7 +104,7 @@ export default {
     // 联系我们
     contactUs: '联系我们',
     companyAddress: '公司地址：',
-    addressValue: '浙江省台州市椒江区海韵路528号',
+    addressValue: '中国浙江省台州市椒江区海韵路528号',
     phone: '电话：',
     phoneValue: '400-826-1128',
     wechatLabel: '微信：',
@@ -340,7 +340,7 @@ export default {
     hotline: '服务热线',
     email: '公司邮箱',
     address: '公司地址',
-    addressValue: '浙江省台州市椒江区海韵路528号',
+    addressValue: '中国浙江省台州市椒江区海韵路528号',
     postalCode: '邮政编码',
     scanQrcode: '扫码关注微信公众号',
     onlineConsult: '在线咨询',
