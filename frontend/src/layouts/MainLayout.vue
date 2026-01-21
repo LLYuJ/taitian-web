@@ -37,9 +37,26 @@
                 </svg>
               </router-link>
               
-              <!-- Mega Menu 下拉面板 -->
+              <!-- 简洁下拉菜单 (关于泰田、服务支持、创新研发、新闻资讯) -->
               <div 
-                v-if="menu.children?.length"
+                v-if="menu.children?.length && menu.isSimple"
+                class="simple-dropdown"
+                :class="{ 'active': activeMenu === menu.key }"
+              >
+                <router-link 
+                  v-for="child in menu.children"
+                  :key="child.key"
+                  :to="localePath(child.path)"
+                  class="simple-dropdown-link"
+                  @click="closeMenu"
+                >
+                  {{ t(`nav.sub.${child.key}`) }}
+                </router-link>
+              </div>
+              
+              <!-- Mega Menu 下拉面板 (产品中心) -->
+              <div 
+                v-if="menu.children?.length && !menu.isSimple"
                 class="mega-menu"
                 :class="{ 'active': activeMenu === menu.key, 'has-third-level': menu.hasThirdLevel }"
               >
@@ -269,6 +286,7 @@ const navigationMenus = [
   {
     key: 'about',
     path: '/about',
+    isSimple: true,
     children: [
       { key: 'overview', path: '/about/overview' },
       { key: 'production', path: '/about/production' },
@@ -278,6 +296,7 @@ const navigationMenus = [
   {
     key: 'services',
     path: '/services',
+    isSimple: true,
     children: [
       { key: 'preSales', path: '/services/pre-sales' },
       { key: 'afterSales', path: '/services/after-sales' },
@@ -287,6 +306,7 @@ const navigationMenus = [
   {
     key: 'research',
     path: '/research',
+    isSimple: true,
     children: [
       { key: 'techCenter', path: '/research/tech-center' },
       { key: 'patents', path: '/research/patents' }
@@ -295,6 +315,7 @@ const navigationMenus = [
   {
     key: 'news',
     path: '/news',
+    isSimple: true,
     children: [
       { key: 'companyNews', path: '/news/company' },
       { key: 'exhibitions', path: '/news/exhibitions' }
@@ -437,7 +458,7 @@ const closeMenu = () => {
     }
     
     .nav-dropdown {
-      position: static; // 改为 static，让 mega-menu 相对于 header 定位
+      position: relative; // 简洁下拉菜单相对于此定位
       
       &:hover {
         .nav-item {
@@ -480,6 +501,43 @@ const closeMenu = () => {
     .divider {
       color: #ddd;
       font-size: 14px;
+    }
+  }
+}
+
+// 简洁下拉菜单样式
+.simple-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #eee;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+  min-width: 120px;
+  padding: 8px 0;
+  border-radius: 0 0 4px 4px;
+  
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .simple-dropdown-link {
+    display: block;
+    padding: 10px 14px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    
+    &:hover {
+      background: rgba(44, 181, 190, 0.1);
+      color: #2CB5BE;
     }
   }
 }
