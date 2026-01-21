@@ -2,13 +2,13 @@ export default {
   // 导航
   nav: {
     home: '首页',
-    about: '关于我们',
+    about: '关于泰田',
     products: '产品中心',
     solutions: '解决方案',
-    services: '服务与支持',
-    research: '研发',
+    services: '服务支持',
+    research: '创新研发',
     manufacturing: '智造',
-    news: '新闻中心',
+    news: '新闻资讯',
     careers: '加入我们',
     contact: '联系我们',
     admin: '管理后台',

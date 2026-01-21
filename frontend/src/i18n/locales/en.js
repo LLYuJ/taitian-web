@@ -2,13 +2,13 @@ export default {
   // Navigation
   nav: {
     home: 'Home',
-    about: 'About Us',
+    about: 'About Taitian',
     products: 'Products',
     solutions: 'Solutions',
-    services: 'Services & Support',
-    research: 'R&D',
+    services: 'Services',
+    research: 'Innovation & R&D',
     manufacturing: 'Smart Manufacturing',
-    news: 'News Center',
+    news: 'News',
     careers: 'Careers',
     contact: 'Contact',
     admin: 'Admin',

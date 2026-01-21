@@ -212,7 +212,7 @@ const isContactPage = computed(() => {
 const activeMenu = ref(null)
 const activeCategory = ref(null)
 
-// 导航菜单结构配置 - 按图片顺序：产品中心、解决方案、研发、智造、新闻中心、加入我们、服务与支持、关于我们
+// 导航菜单结构配置 - 顺序：首页、产品中心、关于泰田、服务支持、创新研发、新闻资讯、联系我们
 const navigationMenus = [
   {
     key: 'products',
@@ -267,6 +267,24 @@ const navigationMenus = [
     ]
   },
   {
+    key: 'about',
+    path: '/about',
+    children: [
+      { key: 'overview', path: '/about/overview' },
+      { key: 'production', path: '/about/production' },
+      { key: 'honors', path: '/about/honors' }
+    ]
+  },
+  {
+    key: 'services',
+    path: '/services',
+    children: [
+      { key: 'preSales', path: '/services/pre-sales' },
+      { key: 'afterSales', path: '/services/after-sales' },
+      { key: 'documents', path: '/services/documents' }
+    ]
+  },
+  {
     key: 'research',
     path: '/research',
     children: [
@@ -280,24 +298,6 @@ const navigationMenus = [
     children: [
       { key: 'companyNews', path: '/news/company' },
       { key: 'exhibitions', path: '/news/exhibitions' }
-    ]
-  },
-  {
-    key: 'services',
-    path: '/services',
-    children: [
-      { key: 'preSales', path: '/services/pre-sales' },
-      { key: 'afterSales', path: '/services/after-sales' },
-      { key: 'documents', path: '/services/documents' }
-    ]
-  },
-  {
-    key: 'about',
-    path: '/about',
-    children: [
-      { key: 'overview', path: '/about/overview' },
-      { key: 'production', path: '/about/production' },
-      { key: 'honors', path: '/about/honors' }
     ]
   },
   {
