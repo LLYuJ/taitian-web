@@ -1,20 +1,18 @@
 <template>
   <div class="contact-page">
-    <!-- 面包屑导航 -->
-    <div class="breadcrumb-container">
-      <div class="container">
+    <!-- 页面头部 Banner（包含面包屑导航） -->
+    <div class="page-header">
+      <img 
+        :src="headerBgImage" 
+        alt="联系我们" 
+        class="header-bg"
+      />
+      <div class="header-content">
         <nav class="breadcrumb">
           <router-link :to="localePath('/')">{{ t('nav.home') }}</router-link>
           <span class="separator">&gt;</span>
           <span class="current">{{ t('contactPage.title') }}</span>
         </nav>
-      </div>
-    </div>
-
-    <!-- 页面头部 Banner -->
-    <div class="page-header">
-      <div class="header-bg-image"></div>
-      <div class="header-content">
         <h1>{{ t('contactPage.heroTitle') }}</h1>
         <p>{{ t('contactPage.heroSubtitle') }}</p>
       </div>
@@ -106,10 +104,12 @@ import { reactive, ref } from 'vue'
 import { useLocale } from '@/composables/useLocale'
 
 import companyImg from '@/assets/images/banners/new_factory.png'
+import headerBg from '@/assets/images/backgrounds/page-header-bg.jpg'
 
 const { t, localePath } = useLocale()
 
 const companyImage = ref(companyImg)
+const headerBgImage = ref(headerBg)
 
 const form = reactive({
   name: '',
@@ -137,38 +137,7 @@ const submitForm = () => {
 </script>
 
 <style lang="scss" scoped>
-// 面包屑导航
-.breadcrumb-container {
-  background: #f5f5f5;
-  padding: 12px 0;
-  border-bottom: 1px solid #e8e8e8;
-  
-  .breadcrumb {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    
-    a {
-      color: #0066cc;
-      text-decoration: none;
-      
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-    
-    .separator {
-      margin: 0 8px;
-      color: #999;
-    }
-    
-    .current {
-      color: #666;
-    }
-  }
-}
-
-// 页面头部 Banner
+// 页面头部 Banner（包含面包屑导航）
 .page-header {
   position: relative;
   height: 220px;
@@ -176,47 +145,61 @@ const submitForm = () => {
   align-items: center;
   overflow: hidden;
   
-  .header-bg-image {
+  .header-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #3EC6CB 0%, #4FD1C5 50%, #5DD3C8 100%);
+    object-fit: cover;
     z-index: 0;
-    
-    // 添加Logo水印效果
-    &::after {
-      content: '';
-      position: absolute;
-      right: 10%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 300px;
-      height: 300px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20 80 L20 20 L80 20' stroke='rgba(255,255,255,0.15)' stroke-width='8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M30 70 L30 30 L70 30 L70 50' stroke='rgba(255,255,255,0.15)' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M55 45 L75 65' stroke='rgba(255,255,255,0.15)' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Cpath d='M70 50 L80 60' stroke='rgba(255,255,255,0.15)' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-size: contain;
-      opacity: 0.8;
-    }
   }
   
   .header-content {
     position: relative;
     z-index: 2;
-    padding-left: 10%;
-    color: white;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: #333;
+    
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+      
+      a {
+        color: #0066cc;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      
+      .separator {
+        margin: 0 8px;
+        color: #666;
+      }
+      
+      .current {
+        color: #333;
+      }
+    }
     
     h1 {
       font-size: 36px;
       font-weight: 600;
       margin-bottom: 16px;
       letter-spacing: 1px;
+      color: #333;
     }
 
     p {
       font-size: 16px;
-      opacity: 0.95;
+      color: #666;
       max-width: 600px;
       line-height: 1.8;
     }
@@ -453,19 +436,20 @@ const submitForm = () => {
     height: 180px;
     
     .header-content {
-      padding-left: 5%;
+      padding: 0 15px;
+      
+      .breadcrumb {
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
       
       h1 {
-        font-size: 28px;
+        font-size: 24px;
       }
       
       p {
         font-size: 14px;
       }
-    }
-    
-    .header-bg-image::after {
-      display: none;
     }
   }
   

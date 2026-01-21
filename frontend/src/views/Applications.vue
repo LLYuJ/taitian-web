@@ -1,7 +1,18 @@
 <template>
   <div class="applications-page">
+    <!-- 页面头部 Banner（包含面包屑导航） -->
     <div class="page-header">
-      <div class="container">
+      <img 
+        :src="headerBgImage" 
+        alt="应用领域" 
+        class="header-bg"
+      />
+      <div class="header-content">
+        <nav class="breadcrumb">
+          <router-link :to="localePath('/')">{{ t('nav.home') }}</router-link>
+          <span class="separator">&gt;</span>
+          <span class="current">{{ t('applicationsPage.title') }}</span>
+        </nav>
         <h1>{{ t('applicationsPage.title') }}</h1>
         <p>{{ t('applicationsPage.subtitle') }}</p>
       </div>
@@ -22,9 +33,14 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useLocale } from '@/composables/useLocale'
 
-const { t } = useLocale()
+import headerBg from '@/assets/images/backgrounds/page-header-bg.jpg'
+
+const { t, localePath } = useLocale()
+
+const headerBgImage = ref(headerBg)
 
 // 专业 SVG 图标
 const svgIcons = {
@@ -84,19 +100,70 @@ const applications = [
 
 <style lang="scss" scoped>
 .page-header {
-  background: linear-gradient(135deg, #2CB5BE 0%, #1a8a91 100%);
-  color: white;
-  padding: 80px 0;
-  text-align: center;
-
-  h1 {
-    font-size: 48px;
-    margin-bottom: 15px;
+  position: relative;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  
+  .header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
+  
+  .header-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: #333;
+    
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+      
+      a {
+        color: #0066cc;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      
+      .separator {
+        margin: 0 8px;
+        color: #666;
+      }
+      
+      .current {
+        color: #333;
+      }
+    }
+    
+    h1 {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      color: #333;
+    }
 
-  p {
-    font-size: 20px;
-    opacity: 0.9;
+    p {
+      font-size: 16px;
+      color: #666;
+      max-width: 600px;
+      line-height: 1.8;
+    }
   }
 }
 
@@ -157,6 +224,27 @@ const applications = [
 }
 
 @media (max-width: 768px) {
+  .page-header {
+    height: 180px;
+    
+    .header-content {
+      padding: 0 15px;
+      
+      .breadcrumb {
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+  
   .applications-content .applications-grid {
     grid-template-columns: 1fr;
   }

@@ -1,5 +1,6 @@
 <template>
   <div class="news-page">
+    <!-- 页面头部 Banner（包含面包屑导航） -->
     <div class="page-header">
       <img 
         :src="headerBg" 
@@ -7,10 +8,14 @@
         class="header-bg"
       />
       <div class="header-content">
+        <nav class="breadcrumb">
+          <router-link :to="localePath('/')">{{ t('nav.home') }}</router-link>
+          <span class="separator">&gt;</span>
+          <span class="current">{{ t('newsPage.title') }}</span>
+        </nav>
         <h1>{{ t('newsPage.title') }}</h1>
         <p>{{ t('newsPage.subtitle') }}</p>
       </div>
-      <div class="header-overlay"></div>
     </div>
 
     <section class="news-content">
@@ -43,12 +48,12 @@
 import { ref } from 'vue'
 import { useLocale } from '@/composables/useLocale'
 
-import bgImage from '@/assets/images/backgrounds/section_bg4.jpg'
+import bgImage from '@/assets/images/backgrounds/page-header-bg.jpg'
 import news1 from '@/assets/images/news/news1.jpg'
 import news2 from '@/assets/images/news/news2.jpg'
 import news3 from '@/assets/images/news/news3.jpg'
 
-const { t } = useLocale()
+const { t, localePath } = useLocale()
 
 const headerBg = ref(bgImage)
 
@@ -94,10 +99,9 @@ const newsList = [
 <style lang="scss" scoped>
 .page-header {
   position: relative;
-  height: 300px;
+  height: 220px;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
   
   .header-bg {
@@ -113,30 +117,51 @@ const newsList = [
   .header-content {
     position: relative;
     z-index: 2;
-    text-align: center;
-    color: white;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: #333;
+    
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-bottom: 20px;
+      
+      a {
+        color: #0066cc;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      
+      .separator {
+        margin: 0 8px;
+        color: #666;
+      }
+      
+      .current {
+        color: #333;
+      }
+    }
     
     h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      color: #333;
     }
 
     p {
-      font-size: 20px;
-      opacity: 0.95;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+      font-size: 16px;
+      color: #666;
+      max-width: 600px;
+      line-height: 1.8;
     }
-  }
-  
-  .header-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(44, 181, 190, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
-    z-index: 1;
   }
 }
 
@@ -242,10 +267,23 @@ const newsList = [
 
 @media (max-width: 768px) {
   .page-header {
-    height: 250px;
+    height: 180px;
     
-    .header-content h1 {
-      font-size: 32px;
+    .header-content {
+      padding: 0 15px;
+      
+      .breadcrumb {
+        font-size: 12px;
+        margin-bottom: 15px;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      p {
+        font-size: 14px;
+      }
     }
   }
   
