@@ -1,5 +1,8 @@
 <template>
   <div class="main-layout">
+    <!-- 联系弹窗（联系我们页面不显示） -->
+    <ContactPopup v-if="!isContactPage" />
+    
     <header class="header">
       <div class="wide-container header-content">
         <!-- 左侧 Logo 区域 -->
@@ -182,8 +185,10 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useLocale } from '@/composables/useLocale'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+import ContactPopup from '@/components/ContactPopup.vue'
 
 // 导入推荐区图片
 import productAllImg from '@/assets/images/banners/product-all.jpg'
@@ -197,6 +202,12 @@ import pneumaticToolsImg from '@/assets/images/products/auto-repair-tools.png'
 import lubricationEquipmentImg from '@/assets/images/products/lubrication-equipment.jpg'
 
 const { t, localePath } = useLocale()
+const route = useRoute()
+
+// 检查是否在联系我们页面
+const isContactPage = computed(() => {
+  return route.path.includes('/contact')
+})
 
 const activeMenu = ref(null)
 const activeCategory = ref(null)
