@@ -82,9 +82,20 @@
               <div class="form-row">
                 <div class="form-group">
                   <label>{{ t('contactPage.form.phone') }}</label>
-                  <div class="phone-input">
-                    <span class="country-code">🇨🇳</span>
-                    <input v-model="form.phone" type="tel" :placeholder="t('contactPage.form.phonePlaceholder')" />
+                  <div class="phone-input-group">
+                    <span class="plus-sign">+</span>
+                    <input 
+                      v-model="form.areaCode" 
+                      type="text" 
+                      class="area-code-input"
+                      :placeholder="t('contactPage.form.areaCodePlaceholder')"
+                    />
+                    <input 
+                      v-model="form.phone" 
+                      type="tel" 
+                      class="phone-number-input"
+                      :placeholder="t('contactPage.form.phonePlaceholder')"
+                    />
                   </div>
                 </div>
                 <div class="form-group">
@@ -108,11 +119,6 @@
             </form>
           </div>
           
-          <div class="captcha-area">
-            <div class="captcha-box">
-              <span class="captcha-text">人机</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -134,6 +140,7 @@ const headerBgImage = ref(headerBg)
 const form = reactive({
   name: '',
   company: '',
+  areaCode: '',
   phone: '',
   email: '',
   message: ''
@@ -150,6 +157,7 @@ const submitForm = () => {
   // 清空表单
   form.name = ''
   form.company = ''
+  form.areaCode = ''
   form.phone = ''
   form.email = ''
   form.message = ''
@@ -324,10 +332,7 @@ const submitForm = () => {
   }
   
   .form-content {
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    gap: 40px;
-    align-items: start;
+    display: block;
   }
   
   .contact-form {
@@ -383,38 +388,69 @@ const submitForm = () => {
         }
       }
       
-      .phone-input {
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      
+      .phone-input-group {
         display: flex;
         align-items: center;
         border: 1px solid #e0e0e0;
         border-radius: 4px;
         overflow: hidden;
         background: #fff;
+        transition: all 0.3s;
         
         &:focus-within {
           border-color: #0088cc;
           box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.1);
         }
         
-        .country-code {
-          padding: 12px;
+        .plus-sign {
+          padding: 12px 8px 12px 15px;
+          color: #666;
+          font-size: 14px;
+          font-weight: 500;
           background: #f9f9f9;
-          border-right: 1px solid #e0e0e0;
-          font-size: 16px;
+          user-select: none;
         }
         
-        input {
+        .area-code-input {
+          width: 60px;
+          min-width: 60px;
+          padding: 12px 8px;
           border: none;
+          border-right: 1px solid #e0e0e0;
+          background: #f9f9f9;
+          text-align: center;
+          font-size: 14px;
           
           &:focus {
+            outline: none;
             box-shadow: none;
           }
+          
+          &::placeholder {
+            color: #bbb;
+          }
         }
-      }
-      
-      textarea {
-        resize: vertical;
-        min-height: 120px;
+        
+        .phone-number-input {
+          flex: 1;
+          padding: 12px 15px;
+          border: none;
+          font-size: 14px;
+          
+          &:focus {
+            outline: none;
+            box-shadow: none;
+          }
+          
+          &::placeholder {
+            color: #bbb;
+          }
+        }
       }
     }
 
@@ -436,38 +472,12 @@ const submitForm = () => {
     }
   }
   
-  .captcha-area {
-    .captcha-box {
-      width: 120px;
-      height: 120px;
-      background: #f0f0f0;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      .captcha-text {
-        font-size: 24px;
-        color: #999;
-        font-weight: 500;
-      }
-    }
-  }
 }
 
 @media (max-width: 992px) {
   .company-intro .intro-grid {
     grid-template-columns: 1fr;
     gap: 40px;
-  }
-  
-  .contact-form-section .form-content {
-    grid-template-columns: 1fr;
-  }
-  
-  .contact-form-section .captcha-area {
-    display: none;
   }
 }
 

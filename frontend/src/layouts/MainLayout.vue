@@ -795,14 +795,27 @@ const closeMenu = () => {
 
 @media (max-width: 1200px) {
   .mega-menu {
-    width: 520px !important;
+    width: 580px !important;
     
     &.has-third-level {
-      width: 680px !important;
+      width: 720px !important;
     }
     
     .promo-area {
-      display: none;
+      max-width: 280px;
+      padding: 12px;
+      
+      .promo-image {
+        max-height: 140px;
+        
+        img {
+          max-height: 130px;
+        }
+      }
+      
+      .promo-text {
+        font-size: 11px;
+      }
     }
   }
 }

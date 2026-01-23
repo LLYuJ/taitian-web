@@ -350,6 +350,7 @@ export default {
       company: 'Company',
       companyPlaceholder: 'Please enter your company name',
       phone: 'Phone',
+      areaCodePlaceholder: '86',
       phonePlaceholder: '131 2345 6789',
       email: 'Email',
       emailPlaceholder: 'Please enter your email address',

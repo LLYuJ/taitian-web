@@ -350,6 +350,7 @@ export default {
       company: '公司',
       companyPlaceholder: '请输入您的公司名称',
       phone: '电话',
+      areaCodePlaceholder: '86',
       phonePlaceholder: '131 2345 6789',
       email: '电子邮件',
       emailPlaceholder: '请输入您的电子邮箱',
