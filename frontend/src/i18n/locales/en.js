@@ -146,21 +146,21 @@ export default {
         name: 'Fastening Tools Division',
         desc: 'With a building area of 40,000 square meters, equipped with advanced production lines and intelligent manufacturing systems, our annual production capacity covers 1 million professional-grade pneumatic tools, 100,000 industrial-grade electric tools, and 50,000 smart torque tools with integrated battery sensors. With our scaled and lean production capabilities, we provide stable and efficient delivery assurance for global customers.',
         phone: '400-826-1128',
-        email: 'sales@chinataitian.com',
+        email: "sales{'@'}chinataitian.com",
         address: 'No. 98 East Taihe Road, Jiaojiang District, Taizhou, Zhejiang, China'
       },
       compressorHost: {
         name: 'Compressor Host Division',
         desc: 'With a building area of 38,000 square meters, we focus on R&D and lean manufacturing of compressor hosts. With an annual production capacity exceeding 300,000 units, through continuous technological innovation and strict quality control, we provide efficient and reliable core power units for various compressor systems, committed to promoting industry energy efficiency improvement and sustainable development.',
         phone: '400-826-1128',
-        email: 'sales@chinataitian.com',
+        email: "sales{'@'}chinataitian.com",
         address: 'No. 1 Binhai Road, Huanglang Industrial Park, Luqiao District, Taizhou, Zhejiang, China'
       },
       precisionCompressor: {
         name: 'Precision Machine Tools / Compressor Division',
         desc: 'With a building area of 120,000 square meters, we are dedicated to providing integrated solutions centered on energy-efficient air compressors and high-precision machine tools. We focus on improving the efficiency, reliability, and sustainability of industrial production, using innovative technology to help customers achieve continuous growth and create outstanding value together.',
         phone: '400-826-1128',
-        email: 'sales@chinataitian.com',
+        email: "sales{'@'}chinataitian.com",
         address: 'No. 528 Haiyun Road, Jiaojiang District, Taizhou, Zhejiang, China'
       }
     },
