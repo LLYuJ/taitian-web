@@ -1,6 +1,6 @@
 """应用配置"""
 from pydantic_settings import BaseSettings
-from typing import List
+from typing import List, Optional
 
 
 class Settings(BaseSettings):
@@ -11,8 +11,11 @@ class Settings(BaseSettings):
     API_VERSION: str = "v1"
     DEBUG: bool = True
     
-    # 数据库配置
-    DATABASE_URL: str = "sqlite+aiosqlite:///./taitian.db"
+    # 数据库配置 - PostgreSQL
+    # 通过环境变量或 .env 文件配置
+    # 开发环境(macOS): postgresql+asyncpg://用户名@localhost:5432/taitian
+    # 生产环境(Linux): postgresql+asyncpg://postgres:password@localhost:5432/taitian
+    DATABASE_URL: str = "postgresql+asyncpg://postgres:password@localhost:5432/taitian"
     
     # JWT配置
     SECRET_KEY: str = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"

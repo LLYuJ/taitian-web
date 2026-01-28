@@ -367,7 +367,45 @@ export default {
     learnMore: '了解更多',
     readMore: '阅读更多',
     submit: '提交',
-    loading: '加载中...'
+    loading: '加载中...',
+    all: '全部',
+    preview: '预览',
+    edit: '编辑',
+    delete: '删除',
+    publish: '发布',
+    unpublish: '撤回',
+    save: '保存',
+    cancel: '取消',
+    confirm: '确认'
+  },
+
+  // 管理后台
+  admin: {
+    dashboard: '仪表盘',
+    newsManagement: '新闻管理',
+    mediaManagement: '媒体管理',
+    backToFront: '返回前台',
+    logout: '退出登录',
+    news: {
+      createNews: '新建新闻',
+      editNews: '编辑新闻',
+      title: '标题',
+      summary: '摘要',
+      content: '正文',
+      category: '分类',
+      coverImage: '封面图',
+      status: '状态',
+      publishTime: '发布时间',
+      updateTime: '更新时间',
+      published: '已发布',
+      draft: '草稿',
+      companyNews: '公司新闻',
+      exhibition: '展会现场',
+      previewMode: '预览模式 - 此内容尚未发布',
+      previewLinkGenerated: '预览链接已生成，有效期 1 小时',
+      saveAndPreview: '保存并预览',
+      openInNewTab: '在新窗口预览'
+    }
   },
 
   // 语言

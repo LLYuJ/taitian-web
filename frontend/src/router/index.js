@@ -150,6 +150,11 @@ const mainRoutes = [
     name: 'NewsExhibitions',
     component: () => import('@/views/News.vue')
   },
+  {
+    path: 'news/detail/:id',
+    name: 'NewsDetail',
+    component: () => import('@/views/NewsDetail.vue')
+  },
   
   // 联系我们
   {
@@ -200,6 +205,11 @@ const router = createRouter({
           path: 'media',
           name: 'AdminMedia',
           component: () => import('@/views/admin/MediaManagement.vue')
+        },
+        {
+          path: 'news',
+          name: 'AdminNews',
+          component: () => import('@/views/admin/NewsManagement.vue')
         }
       ]
     },

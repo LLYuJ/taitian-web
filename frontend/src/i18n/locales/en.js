@@ -367,7 +367,45 @@ export default {
     learnMore: 'Learn More',
     readMore: 'Read More',
     submit: 'Submit',
-    loading: 'Loading...'
+    loading: 'Loading...',
+    all: 'All',
+    preview: 'Preview',
+    edit: 'Edit',
+    delete: 'Delete',
+    publish: 'Publish',
+    unpublish: 'Unpublish',
+    save: 'Save',
+    cancel: 'Cancel',
+    confirm: 'Confirm'
+  },
+
+  // Admin
+  admin: {
+    dashboard: 'Dashboard',
+    newsManagement: 'News Management',
+    mediaManagement: 'Media Management',
+    backToFront: 'Back to Website',
+    logout: 'Logout',
+    news: {
+      createNews: 'Create News',
+      editNews: 'Edit News',
+      title: 'Title',
+      summary: 'Summary',
+      content: 'Content',
+      category: 'Category',
+      coverImage: 'Cover Image',
+      status: 'Status',
+      publishTime: 'Publish Time',
+      updateTime: 'Update Time',
+      published: 'Published',
+      draft: 'Draft',
+      companyNews: 'Company News',
+      exhibition: 'Exhibitions',
+      previewMode: 'Preview Mode - Content not yet published',
+      previewLinkGenerated: 'Preview link generated, valid for 1 hour',
+      saveAndPreview: 'Save & Preview',
+      openInNewTab: 'Open in New Tab'
+    }
   },
 
   // Language

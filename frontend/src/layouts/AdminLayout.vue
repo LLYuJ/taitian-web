@@ -9,6 +9,10 @@
           <el-icon><Grid /></el-icon>
           <span>仪表盘</span>
         </router-link>
+        <router-link to="/admin/news" class="nav-item">
+          <el-icon><Document /></el-icon>
+          <span>新闻管理</span>
+        </router-link>
         <router-link to="/admin/media" class="nav-item">
           <el-icon><Picture /></el-icon>
           <span>媒体管理</span>
@@ -46,6 +50,7 @@
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { ElMessage } from 'element-plus'
+import { Grid, Document, Picture, SwitchButton, HomeFilled } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
