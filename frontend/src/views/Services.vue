@@ -110,8 +110,51 @@
 
         <!-- 售后保障内容 -->
         <template v-else-if="currentTab === 'after-sales'">
-          <div class="content-placeholder">
-            <!-- 预留内容区域 -->
+          <div class="maintenance-section">
+            <!-- 维修与保养服务标题 -->
+            <h2 class="section-title">{{ t('servicesPage.afterSales.maintenanceTitle') }}</h2>
+            
+            <!-- 三个维修保养卡片 -->
+            <div class="maintenance-cards">
+              <!-- 压缩机维修与保养 -->
+              <div class="maintenance-card">
+                <h3 class="card-title">{{ t('servicesPage.afterSales.compressor.title') }}</h3>
+                <div class="card-divider"></div>
+                <div class="card-items">
+                  <span 
+                    v-for="(item, index) in compressorItems" 
+                    :key="index"
+                    class="item-tag"
+                  >{{ item }}</span>
+                </div>
+              </div>
+              
+              <!-- 主机维修与保养 -->
+              <div class="maintenance-card">
+                <h3 class="card-title">{{ t('servicesPage.afterSales.host.title') }}</h3>
+                <div class="card-divider"></div>
+                <div class="card-items">
+                  <span 
+                    v-for="(item, index) in hostItems" 
+                    :key="index"
+                    class="item-tag"
+                  >{{ item }}</span>
+                </div>
+              </div>
+              
+              <!-- 工具维修与保养 -->
+              <div class="maintenance-card">
+                <h3 class="card-title">{{ t('servicesPage.afterSales.tools.title') }}</h3>
+                <div class="card-divider"></div>
+                <div class="card-items">
+                  <span 
+                    v-for="(item, index) in toolItems" 
+                    :key="index"
+                    class="item-tag"
+                  >{{ item }}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </template>
 
@@ -133,7 +176,7 @@ import { useLocale } from '@/composables/useLocale'
 
 import bgImage from '@/assets/images/backgrounds/page-header-bg.jpg'
 
-const { t, localePath } = useLocale()
+const { t, tm, localePath } = useLocale()
 const route = useRoute()
 
 const headerBg = ref(bgImage)
@@ -197,6 +240,11 @@ const processSteps = computed(() => [
   t('servicesPage.preSales.process.step4'),
   t('servicesPage.preSales.process.step5')
 ])
+
+// 售后维修保养数据
+const compressorItems = computed(() => tm('servicesPage.afterSales.compressor.items'))
+const hostItems = computed(() => tm('servicesPage.afterSales.host.items'))
+const toolItems = computed(() => tm('servicesPage.afterSales.tools.items'))
 
 // FAQ 列表
 const faqList = computed(() => [
@@ -344,6 +392,101 @@ $primary-dark: #239aa2;
 
   .content-placeholder {
     min-height: 300px;
+  }
+}
+
+// 售后维修保养样式
+.maintenance-section {
+  .section-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 48px;
+    text-align: center;
+    position: relative;
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: $primary-color;
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+  }
+  
+  .maintenance-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .maintenance-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px 28px;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: rgba($primary-color, 0.5);
+      box-shadow: 0 8px 24px rgba($primary-color, 0.1);
+      transform: translateY(-4px);
+    }
+    
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      margin: 0 0 16px 0;
+    }
+    
+    .card-divider {
+      height: 2px;
+      background: linear-gradient(90deg, $primary-color 0%, rgba($primary-color, 0.3) 100%);
+      margin-bottom: 24px;
+      border-radius: 1px;
+    }
+    
+    .card-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+    
+    .item-tag {
+      font-size: 15px;
+      color: #555;
+      position: relative;
+      
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        background: $primary-color;
+        border-radius: 50%;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .maintenance-section {
+    .maintenance-cards {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 32px;
+    }
   }
 }
 

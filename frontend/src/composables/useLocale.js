@@ -6,7 +6,7 @@ import { supportedLocales, setLocale as setI18nLocale } from '@/i18n'
 export function useLocale() {
   const route = useRoute()
   const router = useRouter()
-  const { locale, t } = useI18n()
+  const { locale, t, tm } = useI18n()
 
   // 当前语言
   const currentLocale = computed(() => locale.value)
@@ -59,6 +59,7 @@ export function useLocale() {
     switchLocale,
     localePath,
     t,
+    tm,
     supportedLocales
   }
 }

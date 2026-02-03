@@ -297,7 +297,20 @@ export default {
     afterSales: {
       tabName: '售后保障',
       title: '选择我们，后顾无忧',
-      desc: '快速响应您的每一个需求，确保设备稳定运行，保障生产无忧'
+      desc: '快速响应您的每一个需求，确保设备稳定运行，保障生产无忧',
+      maintenanceTitle: '售后维修与保养服务',
+      compressor: {
+        title: '压缩机维修与保养',
+        items: ['主机', '电机', '变频器', '散热器', '电磁阀', '空滤', '油滤', '油封芯']
+      },
+      host: {
+        title: '主机维修与保养',
+        items: ['轴封', '轴承', '转子', '油乳化']
+      },
+      tools: {
+        title: '工具维修与保养',
+        items: ['主轴', '打击块', '叶片']
+      }
     },
     documents: {
       tabName: '产品资料',

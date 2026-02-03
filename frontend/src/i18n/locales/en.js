@@ -297,7 +297,20 @@ export default {
     afterSales: {
       tabName: 'After-Sales Support',
       title: 'Choose Us, Worry-Free',
-      desc: 'Rapidly respond to your every need, ensure stable equipment operation, and guarantee worry-free production'
+      desc: 'Rapidly respond to your every need, ensure stable equipment operation, and guarantee worry-free production',
+      maintenanceTitle: 'After-Sales Maintenance & Service',
+      compressor: {
+        title: 'Compressor Maintenance',
+        items: ['Host', 'Motor', 'Inverter', 'Radiator', 'Solenoid Valve', 'Air Filter', 'Oil Filter', 'Oil Seal Core']
+      },
+      host: {
+        title: 'Host Maintenance',
+        items: ['Shaft Seal', 'Bearing', 'Rotor', 'Oil Emulsification']
+      },
+      tools: {
+        title: 'Tool Maintenance',
+        items: ['Spindle', 'Impact Block', 'Blade']
+      }
     },
     documents: {
       tabName: 'Documentation',
