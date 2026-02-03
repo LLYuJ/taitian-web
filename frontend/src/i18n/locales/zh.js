@@ -50,7 +50,7 @@ export default {
       quality: '品质管控',
       
       // 新闻中心
-      companyNews: '公司新闻',
+      companyNews: '泰田新闻',
       exhibitions: '展会现场',
       
       // 加入我们
@@ -314,6 +314,8 @@ export default {
   // 新闻动态页面
   newsPage: {
     title: '新闻资讯',
+    bannerTitle: '新闻与资讯',
+    bannerSubtitle: '记录我们的坚实足迹，叙事行业与自身的未来。',
     subtitle: '了解泰田集团最新资讯',
     readMore: '阅读更多 →',
     companyNews: {

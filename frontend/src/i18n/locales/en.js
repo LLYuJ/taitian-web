@@ -50,7 +50,7 @@ export default {
       quality: 'Quality Control',
       
       // News
-      companyNews: 'Company News',
+      companyNews: 'Taitian News',
       exhibitions: 'Exhibitions',
       
       // Careers
@@ -314,6 +314,8 @@ export default {
   // News Page
   newsPage: {
     title: 'News',
+    bannerTitle: 'News & Information',
+    bannerSubtitle: 'Recording our solid footprint, narrating the industry and our future.',
     subtitle: 'Learn about the latest news from Taitian Group',
     readMore: 'Read More →',
     companyNews: {

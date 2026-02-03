@@ -17,7 +17,7 @@
             <span class="current">{{ pageTitle }}</span>
           </template>
           <template v-else>
-            <span class="current">{{ t('newsPage.title') }}</span>
+            <span class="current">{{ t('newsPage.bannerTitle') }}</span>
           </template>
         </nav>
         <h1>{{ pageTitle }}</h1>
@@ -25,8 +25,8 @@
       </div>
     </div>
 
-    <!-- 分类标签导航（仅在主页面显示） -->
-    <section v-if="!isSubPage && !isPreviewMode" class="category-tabs">
+    <!-- 分类标签：全部 / 泰田新闻 / 展会现场（始终显示，非预览时） -->
+    <section v-if="!isPreviewMode" class="category-tabs">
       <div class="container">
         <div class="tabs">
           <router-link 
@@ -41,14 +41,14 @@
             class="tab-item"
             :class="{ active: currentCategory === 'company' }"
           >
-            {{ t('nav.sub.companyNews') }}
+            泰田新闻
           </router-link>
           <router-link 
             :to="localePath('/news/exhibitions')" 
             class="tab-item"
             :class="{ active: currentCategory === 'exhibition' }"
           >
-            {{ t('nav.sub.exhibitions') }}
+            展会现场
           </router-link>
         </div>
       </div>
@@ -72,31 +72,21 @@
 
         <!-- 新闻列表 -->
         <div v-else class="news-list">
-          <div 
-            class="news-item card" 
+          <router-link 
+            class="news-item" 
             v-for="item in newsList" 
             :key="item.id"
+            :to="localePath(`/news/detail/${item.id}`)"
           >
             <div class="news-image">
               <img :src="item.image_url || defaultImage" :alt="item.title" loading="lazy" />
-              <span v-if="!isSubPage" class="category-tag" :class="item.category">
-                {{ item.category === 'company' ? t('nav.sub.companyNews') : t('nav.sub.exhibitions') }}
-              </span>
             </div>
             <div class="news-info">
-              <div class="news-meta">
-                <span class="news-date">{{ formatDate(item.published_at || item.created_at) }}</span>
-              </div>
               <h3>{{ item.title }}</h3>
+              <span class="news-date">{{ formatDate(item.published_at || item.created_at) }}</span>
               <p>{{ item.summary }}</p>
-              <router-link 
-                :to="localePath(`/news/detail/${item.id}`)" 
-                class="read-more"
-              >
-                {{ t('newsPage.readMore') }}
-              </router-link>
             </div>
-          </div>
+          </router-link>
 
           <!-- 空状态 -->
           <div v-if="newsList.length === 0" class="empty-state">
@@ -143,7 +133,7 @@ const isSubPage = computed(() => {
   return currentCategory.value !== null || isPreviewMode.value
 })
 
-// 页面标题
+// 页面标题（主页面用「新闻与资讯」，子页面用分类名）
 const pageTitle = computed(() => {
   if (isPreviewMode.value) {
     return newsList.value[0]?.title || t('newsPage.title')
@@ -154,10 +144,10 @@ const pageTitle = computed(() => {
   if (currentCategory.value === 'exhibition') {
     return t('nav.sub.exhibitions')
   }
-  return t('newsPage.title')
+  return t('newsPage.bannerTitle')
 })
 
-// 页面副标题
+// 页面副标题（主页面用指定文案，子页面用分类描述）
 const pageSubtitle = computed(() => {
   if (currentCategory.value === 'company') {
     return t('newsPage.companyNews.desc')
@@ -165,7 +155,7 @@ const pageSubtitle = computed(() => {
   if (currentCategory.value === 'exhibition') {
     return t('newsPage.exhibitions.desc')
   }
-  return t('newsPage.subtitle')
+  return t('newsPage.bannerSubtitle')
 })
 
 // 格式化日期
@@ -344,27 +334,31 @@ onMounted(() => {
 
 .category-tabs {
   background: #fff;
-  border-bottom: 1px solid #eee;
+  padding: 20px 0;
   
   .tabs {
     display: flex;
-    gap: 0;
+    gap: 16px;
     
     .tab-item {
-      padding: 16px 24px;
+      padding: 10px 28px;
       color: #666;
       text-decoration: none;
-      font-size: 15px;
-      border-bottom: 2px solid transparent;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      background: #fff;
       transition: all 0.3s;
       
       &:hover {
+        border-color: #2CB5BE;
         color: #2CB5BE;
       }
       
       &.active {
-        color: #2CB5BE;
-        border-bottom-color: #2CB5BE;
+        background: #2CB5BE;
+        border-color: #2CB5BE;
+        color: #fff;
       }
     }
   }
@@ -388,8 +382,8 @@ onMounted(() => {
 }
 
 .news-content {
-  padding: 60px 0;
-  background: #f8f9fa;
+  padding: 50px 0;
+  background: #fff;
 
   .loading-state {
     display: flex;
@@ -415,114 +409,68 @@ onMounted(() => {
 
   .news-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
   }
 
   .news-item {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s;
+    display: block;
+    text-decoration: none;
+    color: inherit;
     
     &:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-      
       .news-image img {
         transform: scale(1.05);
+      }
+      
+      h3 {
+        color: #2CB5BE;
       }
     }
 
     .news-image {
-      position: relative;
-      height: 200px;
+      width: 100%;
+      height: 180px;
       overflow: hidden;
+      margin-bottom: 16px;
       
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.5s;
-      }
-      
-      .category-tag {
-        position: absolute;
-        top: 12px;
-        left: 12px;
-        padding: 4px 12px;
-        border-radius: 4px;
-        font-size: 12px;
-        color: white;
-        
-        &.company {
-          background: #2CB5BE;
-        }
-        
-        &.exhibition {
-          background: #f59e0b;
-        }
+        transition: transform 0.4s;
       }
     }
 
     .news-info {
-      padding: 25px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      
-      .news-meta {
-        margin-bottom: 12px;
-      }
-
-      .news-date {
-        font-size: 13px;
-        color: #2CB5BE;
-        font-weight: 500;
-      }
-
       h3 {
-        font-size: 18px;
+        font-size: 16px;
+        font-weight: 600;
         color: #333;
-        margin-bottom: 12px;
+        margin-bottom: 8px;
         line-height: 1.5;
         transition: color 0.3s;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+      }
 
-        &:hover {
-          color: #2CB5BE;
-        }
+      .news-date {
+        display: block;
+        font-size: 13px;
+        color: #999;
+        margin-bottom: 12px;
       }
 
       p {
         font-size: 14px;
         color: #666;
-        line-height: 1.7;
-        margin-bottom: 15px;
-        flex: 1;
+        line-height: 1.8;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 5;
         -webkit-box-orient: vertical;
         overflow: hidden;
-      }
-
-      .read-more {
-        color: #2CB5BE;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
-        transition: all 0.3s;
-        display: inline-block;
-
-        &:hover {
-          color: #1a8a91;
-          transform: translateX(5px);
-        }
       }
     }
   }
@@ -567,13 +515,24 @@ onMounted(() => {
     }
   }
   
-  .category-tabs .tabs .tab-item {
-    padding: 12px 16px;
-    font-size: 14px;
+  .category-tabs .tabs {
+    gap: 10px;
+    
+    .tab-item {
+      padding: 8px 18px;
+      font-size: 13px;
+    }
   }
   
   .news-content .news-list {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .news-content .news-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 </style>
