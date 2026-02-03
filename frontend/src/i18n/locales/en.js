@@ -268,16 +268,41 @@ export default {
     title: 'Services & Support',
     subtitle: 'Comprehensive pre-sales and after-sales service guarantee',
     preSales: {
-      title: 'Pre-Sales Consultation',
-      desc: 'Professional technical team provides product selection, solution design and other consulting services.'
+      tabName: 'Pre-Sales Info',
+      title: 'Customize Your Solution',
+      desc: 'From equipment selection to system configuration, our technical team provides you with full technical support',
+      process: {
+        step1: 'Submit Request',
+        step2: 'Engineer Connect',
+        step3: 'Solution Design',
+        step4: 'Quotation',
+        step5: 'Tech Support'
+      },
+      faqTitle: 'Frequently Asked Questions',
+      faq: {
+        q1: 'What are the advantages of your pneumatic wrenches?',
+        a1: 'With over 20 years of professional manufacturing experience, Taitian Group uses custom high-strength materials combined with micron-level (0.001mm) precision machining processes to ensure products maintain an effective striking life of over 12,000 times even under extreme testing conditions. Its leading durability and reliability have been fully verified by the market, consistently holding 75% market share, providing customers with long-lasting and stable power solutions. For specific model technical parameters and application cases, please contact our sales team for detailed information.',
+        q2: 'Fixed-speed or variable-frequency compressor, which is better for me?',
+        a2: 'When choosing a compressor type, the key is to evaluate your actual operating conditions and long-term operating economics. Generally, for medium to high power applications above 37kW, we recommend variable-frequency compressors. Their advantages include significantly reducing starting current impact through soft-start technology, greatly extending the service life of motors and mechanical components, and reducing equipment maintenance and power loss costs. Variable-frequency systems can dynamically adjust output according to actual air demand, achieving significant energy savings especially in situations with large load fluctuations. If your air usage pattern is relatively stable and intermittent, fixed-speed models can be a basic choice, but in terms of long-term reliability and cost control, variable-frequency solutions have clearer technical and economic advantages in most industrial scenarios.',
+        q3: 'Are the compressor hosts self-produced? How about energy efficiency?',
+        a3: 'Yes, all our compressor hosts are independently developed and manufactured. This ensures full autonomous control from core design, material selection to precision manufacturing, which is the foundation of our excellent performance and reliability.',
+        q4: 'Do your products have relevant certifications? Can you provide test reports?',
+        a4: 'Yes, our products strictly comply with international quality standards and market access requirements. All product series including pneumatic wrenches, electric wrenches, and grease guns have completed CE certification. For specific product certification certificates or report details, please contact our sales team for detailed information.',
+        q5: 'Do you provide customization services for product appearance colors and brand logos?',
+        a5: 'Yes, we provide comprehensive product appearance color and brand logo customization services. Under the premise of meeting the minimum order quantity (MOQ), basic color and logo customization can be provided free of charge. For special coatings, exclusive logos, or small batch orders, we support paid customization solutions to ensure your specific needs are met. For details on customization scope, minimum order quantities, and process details, please contact our sales team for detailed information.',
+        q6: 'What is the warranty period for products?',
+        a6: 'The warranty policy for compressor hosts is: standard 4-bearing single-stage hosts have a 2-year warranty, advanced 8-bearing single-stage hosts have a 5-year warranty, and vertical dual-stage hosts have a 5-year warranty. For specific warranty terms of other products, please contact our sales team for detailed information.'
+      }
     },
     afterSales: {
-      title: 'After-Sales Support',
-      desc: 'Complete after-sales service system, rapid response to customer needs, ensuring stable equipment operation.'
+      tabName: 'After-Sales Support',
+      title: 'Choose Us, Worry-Free',
+      desc: 'Rapidly respond to your every need, ensure stable equipment operation, and guarantee worry-free production'
     },
     documents: {
-      title: 'Product Documentation',
-      desc: 'Provides complete product manuals, technical documents and training materials for download.'
+      tabName: 'Documentation',
+      title: 'Product Documentation Library',
+      desc: 'You can access product brochures, official manuals, technical specifications and drawings'
     }
   },
 

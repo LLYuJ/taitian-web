@@ -99,22 +99,22 @@ const mainRoutes = [
   {
     path: 'services',
     name: 'Services',
-    component: () => import('@/views/Applications.vue')
+    component: () => import('@/views/Services.vue')
   },
   {
     path: 'services/pre-sales',
     name: 'ServicesPreSales',
-    component: () => import('@/views/Applications.vue')
+    component: () => import('@/views/Services.vue')
   },
   {
     path: 'services/after-sales',
     name: 'ServicesAfterSales',
-    component: () => import('@/views/Applications.vue')
+    component: () => import('@/views/Services.vue')
   },
   {
     path: 'services/documents',
     name: 'ServicesDocuments',
-    component: () => import('@/views/Applications.vue')
+    component: () => import('@/views/Services.vue')
   },
   
   // 创新研发
