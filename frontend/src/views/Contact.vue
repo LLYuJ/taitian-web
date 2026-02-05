@@ -292,7 +292,7 @@ const submitForm = () => {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #0088cc;
+        color: #000000;
         flex-shrink: 0;
         
         svg {
