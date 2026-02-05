@@ -70,18 +70,18 @@
             <form @submit.prevent="submitForm">
               <div class="form-row">
                 <div class="form-group">
-                  <label>{{ t('contactPage.form.name') }}</label>
+                  <label>{{ t('contactPage.form.name') }} <span class="required">*</span></label>
                   <input v-model="form.name" type="text" :placeholder="t('contactPage.form.namePlaceholder')" />
                 </div>
                 <div class="form-group">
-                  <label>{{ t('contactPage.form.company') }} <span class="required">*</span></label>
+                  <label>{{ t('contactPage.form.company') }}</label>
                   <input v-model="form.company" type="text" :placeholder="t('contactPage.form.companyPlaceholder')" />
                 </div>
               </div>
               
               <div class="form-row">
                 <div class="form-group">
-                  <label>{{ t('contactPage.form.phone') }}</label>
+                  <label>{{ t('contactPage.form.phone') }} <span class="required">*</span></label>
                   <div class="phone-input-group">
                     <span class="plus-sign">+</span>
                     <input 
@@ -99,7 +99,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>{{ t('contactPage.form.email') }} <span class="required">*</span></label>
+                  <label>{{ t('contactPage.form.email') }}</label>
                   <input v-model="form.email" type="email" :placeholder="t('contactPage.form.emailPlaceholder')" />
                 </div>
               </div>
@@ -147,7 +147,7 @@ const form = reactive({
 })
 
 const submitForm = () => {
-  if (!form.company || !form.email) {
+  if (!form.name || !form.phone) {
     alert(t('contactPage.form.fillComplete'))
     return
   }
@@ -199,7 +199,7 @@ const submitForm = () => {
       margin-bottom: 20px;
       
       a {
-        color: #0066cc;
+        color: #000000;
         text-decoration: none;
         
         &:hover {
@@ -258,7 +258,7 @@ const submitForm = () => {
   .intro-content {
     h2 {
       font-size: 24px;
-      color: #0088cc;
+      color: #000000;
       font-weight: 600;
       margin-bottom: 20px;
     }
@@ -320,7 +320,7 @@ const submitForm = () => {
     
     h2 {
       font-size: 28px;
-      color: #0088cc;
+      color: #000000;
       font-weight: 600;
       margin-bottom: 12px;
     }
@@ -460,14 +460,14 @@ const submitForm = () => {
       font-size: 16px;
       border-radius: 4px;
       cursor: pointer;
-      background: #0088cc;
+      background: #2CB5BE;
       color: white;
       border: none;
       font-weight: 500;
       transition: all 0.3s;
       
       &:hover {
-        background: #0077b3;
+        background: #259DA5;
       }
     }
   }

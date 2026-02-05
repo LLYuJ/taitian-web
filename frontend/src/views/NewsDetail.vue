@@ -271,7 +271,7 @@ onMounted(() => {
       flex-wrap: wrap;
       
       a {
-        color: #0066cc;
+        color: #000000;
         text-decoration: none;
         
         &:hover {

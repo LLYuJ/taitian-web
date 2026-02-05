@@ -16,7 +16,7 @@
         <div class="nav-area">
           <nav class="nav">
             <!-- 首页 -->
-            <router-link :to="localePath('/')" class="nav-item">{{ t('nav.home') }}</router-link>
+            <router-link :to="localePath('/')" class="nav-item home-nav-item">{{ t('nav.home') }}</router-link>
             
             <!-- 带下拉菜单的导航项 -->
             <div 
@@ -438,6 +438,10 @@ const closeMenu = () => {
       align-items: center;
       gap: 4px;
       white-space: nowrap;
+
+      &.home-nav-item {
+        margin-right: 22px;
+      }
 
       // 选中状态 - 使用主题色
       &.router-link-active {

@@ -141,7 +141,7 @@ const products = [
       margin-bottom: 20px;
       
       a {
-        color: #0066cc;
+        color: #000000;
         text-decoration: none;
         
         &:hover {
