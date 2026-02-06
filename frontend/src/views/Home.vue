@@ -273,6 +273,14 @@ onUnmounted(() => {
 // 事业部数据
 const divisions = [
   {
+    nameKey: 'home.divisions.precisionCompressor.name',
+    descKey: 'home.divisions.precisionCompressor.desc',
+    phoneKey: 'home.divisions.precisionCompressor.phone',
+    emailKey: 'home.divisions.precisionCompressor.email',
+    addressKey: 'home.divisions.precisionCompressor.address',
+    image: precisionCompressorDivision
+  },
+  {
     nameKey: 'home.divisions.tighteningTools.name',
     descKey: 'home.divisions.tighteningTools.desc',
     phoneKey: 'home.divisions.tighteningTools.phone',
@@ -287,14 +295,6 @@ const divisions = [
     emailKey: 'home.divisions.compressorHost.email',
     addressKey: 'home.divisions.compressorHost.address',
     image: compressorHostDivision
-  },
-  {
-    nameKey: 'home.divisions.precisionCompressor.name',
-    descKey: 'home.divisions.precisionCompressor.desc',
-    phoneKey: 'home.divisions.precisionCompressor.phone',
-    emailKey: 'home.divisions.precisionCompressor.email',
-    addressKey: 'home.divisions.precisionCompressor.address',
-    image: precisionCompressorDivision
   }
 ]
 
@@ -416,11 +416,6 @@ const onHeroLoad = () => {
     display: flex;
     gap: 16px;
     align-items: center;
-  }
-  
-  .industrial-button {
-    text-decoration: none;
-    display: inline-block;
   }
   
   .hero-phone-btn {
@@ -609,6 +604,60 @@ const onHeroLoad = () => {
   }
 }
 
+/* 全局按钮样式 */
+.industrial-button {
+  text-decoration: none;
+  display: inline-block;
+  background: #fff;
+  padding: 13px 42px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: #000;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  text-align: center;
+  letter-spacing: 1px;
+  border: none;
+}
+
+/* 产品中心和新闻区域的按钮 - 添加阴影 */
+.products-action .industrial-button,
+.news-action .industrial-button {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.industrial-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  background: #2CB5BE;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s;
+}
+
+.industrial-button:hover {
+  color: #fff;
+}
+
+.industrial-button:hover::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
 // 事业部展示区
 .divisions-section {
   padding: 60px 0;
@@ -635,13 +684,7 @@ const onHeroLoad = () => {
     &.reverse {
       flex-direction: row-reverse;
       
-      .division-content {
-        &::before {
-          left: 0;
-          right: auto;
-          background: linear-gradient(90deg, #2CB5BE 0%, transparent 100%);
-        }
-      }
+
     }
   }
   
@@ -671,25 +714,15 @@ const onHeroLoad = () => {
     justify-content: center;
     text-align: left;
     position: relative;
-    background: linear-gradient(135deg, #fafbfc 0%, #f5f7f9 100%);
+    background: #ffffff;
     
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 60%;
-      background: linear-gradient(180deg, #2CB5BE 0%, transparent 100%);
-      border-radius: 2px;
-    }
+
   }
   
   .division-name {
     font-size: 20px;
     font-weight: 600;
-    color: #2CB5BE;
+    color: #000000;
     margin-bottom: 12px;
     letter-spacing: 1px;
     text-align: left;
@@ -720,7 +753,7 @@ const onHeroLoad = () => {
       .contact-icon {
         width: 16px;
         height: 16px;
-        color: #2CB5BE;
+        color: #000000;
         flex-shrink: 0;
       }
       
@@ -851,7 +884,7 @@ const onHeroLoad = () => {
       
       h3 {
         font-size: 20px;
-        color: #2CB5BE;
+        color: #000000;
         margin-bottom: 10px;
       }
       
@@ -916,9 +949,7 @@ const onHeroLoad = () => {
     text-align: center;
     margin-top: 50px;
     
-    .industrial-button {
-      text-decoration: none;
-    }
+
   }
 }
 
@@ -996,9 +1027,7 @@ const onHeroLoad = () => {
     text-align: center;
     margin-top: 50px;
     
-    .industrial-button {
-      text-decoration: none;
-    }
+
   }
 }
 
