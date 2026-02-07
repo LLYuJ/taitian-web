@@ -90,7 +90,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 36px;
   font-weight: 700;
   color: $text-primary;
-  text-align: center;
+  text-align: left;
   margin-bottom: 20px;
   position: relative;
   
@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 60px;
     height: 4px;
     background-color: $primary-color;
-    margin: 20px auto 0;
+    margin: 20px 0 0;
   }
 }
 

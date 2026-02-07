@@ -29,11 +29,6 @@
     <!-- Company Intro -->
     <section class="company-intro">
       <div class="container">
-        <div class="intro-content">
-          <p class="intro-text">
-            {{ t('home.companyIntro.description') }}
-          </p>
-        </div>
 
         <!-- 企业信息统计 -->
         <div class="stats-showcase" ref="statsRef">
@@ -468,32 +463,10 @@ const onHeroLoad = () => {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 50px 60px;
-  margin: 30px 0 0;
-  background: linear-gradient(
-    180deg,
-    #f8f9fa 0%,
-    #f2f4f6 50%,
-    #eef0f2 100%
-  );
-  background-image: 
-    linear-gradient(180deg, #f8f9fa 0%, #f2f4f6 50%, #eef0f2 100%),
-    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0e3e6' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  max-width: 1200px;
+  margin: 30px auto 0;
+  padding: 20px;
   border-radius: 0;
-  position: relative;
-  overflow: hidden;
-  
-  // 右下角装饰性背景
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(135deg, transparent 30%, rgba(0, 0, 0, 0.02) 100%);
-    pointer-events: none;
-  }
   
   .stat-item {
     flex: 1;
@@ -661,7 +634,6 @@ const onHeroLoad = () => {
 // 事业部展示区
 .divisions-section {
   padding: 60px 0;
-  background: #f8f9fa;
 }
 
 .divisions-showcase {
@@ -833,7 +805,6 @@ const onHeroLoad = () => {
 
 .research-section {
   padding: 80px 0;
-  background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
   
   .research-intro {
     max-width: 900px;
@@ -898,7 +869,6 @@ const onHeroLoad = () => {
 
 .products-section {
   padding: 80px 0;
-  background: #f8f9fa;
 
   .products-grid {
     display: grid;
@@ -955,7 +925,6 @@ const onHeroLoad = () => {
 
 .news-section {
   padding: 80px 0;
-  background: white;
   
   .news-grid {
     display: grid;

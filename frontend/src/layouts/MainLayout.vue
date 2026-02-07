@@ -16,7 +16,7 @@
         <div class="nav-area">
           <nav class="nav">
             <!-- 首页 -->
-            <router-link :to="localePath('/')" class="nav-item home-nav-item">{{ t('nav.home') }}</router-link>
+            <a :href="localePath('/')" class="nav-item home-nav-item" :class="{ 'active': isHomePage }">{{ t('nav.home') }}</a>
             
             <!-- 带下拉菜单的导航项 -->
             <div 
@@ -224,6 +224,13 @@ const route = useRoute()
 // 检查是否在联系我们页面
 const isContactPage = computed(() => {
   return route.path.includes('/contact')
+})
+
+// 检查是否在首页（精确匹配）
+const isHomePage = computed(() => {
+  console.log('当前路由路径:', route.path)
+  console.log('是否为首页:', route.path === '' || route.path === '/' || route.path === '/zh' || route.path === '/en')
+  return route.path === '' || route.path === '/' || route.path === '/zh' || route.path === '/en'
 })
 
 const activeMenu = ref(null)
@@ -444,7 +451,8 @@ const closeMenu = () => {
       }
 
       // 选中状态 - 使用主题色
-      &.router-link-active {
+      &.router-link-active,
+      &.active {
         color: #2CB5BE;
       }
 

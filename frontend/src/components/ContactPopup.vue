@@ -25,15 +25,16 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocale } from '@/composables/useLocale'
 
 const route = useRoute()
 const { t, localePath } = useLocale()
 
-const isVisible = ref(true)
+const isVisible = ref(false)
 const isClosed = ref(false)
+const hasScrolled = ref(false)
 
 // 根据当前路由语言生成联系页面路径
 const contactPath = computed(() => {
@@ -48,9 +49,38 @@ const close = () => {
 // 监听路由变化，如果之前关闭过，在路由变化时重新显示
 watch(() => route.path, (newPath, oldPath) => {
   if (isClosed.value && newPath !== oldPath) {
-    isVisible.value = true
+    isVisible.value = false
     isClosed.value = false
+    hasScrolled.value = false
   }
+})
+
+// 滚动监听，当页面下滑超过300px时显示弹窗，当滑到顶部时隐藏弹窗
+const handleScroll = () => {
+  if (!isClosed.value) {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    
+    // 当滚动超过300px时显示弹窗
+    if (scrollTop > 300) {
+      isVisible.value = true
+      hasScrolled.value = true
+    }
+    // 当滚动回到顶部（小于100px）时隐藏弹窗
+    else if (scrollTop < 100 && hasScrolled.value) {
+      isVisible.value = false
+      hasScrolled.value = false
+    }
+  }
+}
+
+// 组件挂载时添加滚动监听器
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+// 组件卸载时移除滚动监听器
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 

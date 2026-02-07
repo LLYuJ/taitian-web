@@ -124,7 +124,7 @@ export default {
   home: {
     heroTitle: '世界品质 泰田制造',
     heroSubtitle: '精密机床丨拧紧工具丨空气动力设备解决方案服务商',
-    viewProducts: '产品中心 >>>',
+    viewProducts: '产品中心',
     companyIntro: {
       title: '专精特新',
       subtitle: '高新技术企业 · 专精特新小巨人企业',
